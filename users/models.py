@@ -1,4 +1,24 @@
-from django.db import models
-    pass
+from django.contrib.auth.models import AbstractUser
+from django.db.models import CharField, TextField
 
-# Create your models here.
+
+class User(AbstractUser):
+    """Переопределенная модель User с дополнительными полями."""
+    USER = 'user'
+    MODERATOR = 'moderator'
+    ADMIN = 'admin'
+    ROLE_CHOICES = (
+        (USER, USER)
+        (MODERATOR, MODERATOR),
+        (ADMIN, ADMIN),
+    )
+    bio = TextField(
+        blank=True,
+        verbose_name='Информация о пользователе'
+    )
+    role = CharField(
+        max_length=20,
+        choices=ROLE_CHOICES,
+        default=USER,
+        verbose_name='Роль'
+    )
