@@ -27,19 +27,19 @@ class TitleAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
 
-@admin.register(Review)
-class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'author', 'title', 'created', 'rank', 'text',)
-    list_editable = ('text', 'rank',)
-    list_filter = ('title', 'author',)
-    search_fields = ('title', 'author',)
-    empty_value_display = '-пусто-'
+# @admin.register(Review)
+# class ReviewAdmin(admin.ModelAdmin):
+#     list_display = ('pk', 'author', 'title', 'created', 'rank', 'text',)
+#     list_editable = ('text', 'rank',)
+#     list_filter = ('title', 'author',)
+#     search_fields = ('title', 'author',)
+#     empty_value_display = '-пусто-'
 
 
-@admin.register(Comment)
-class CommentAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'title', 'review', 'author', 'text', 'created',)
-    list_editable = ('text',)
-    list_filter = ('created', 'author', 'title', 'review',)
-    search_fields = ('author', 'title', 'review', 'text',)
-    empty_value_display = '-пусто-'
+# @admin.register(Comment)
+# class CommentAdmin(admin.ModelAdmin):
+#     list_display = ('pk', 'title', 'review', 'author', 'text', 'created',)
+#     list_editable = ('text',)
+#     list_filter = ('created', 'author', 'title', 'review',)
+#     search_fields = ('author', 'title', 'review', 'text',)
+#     empty_value_display = '-пусто-'
