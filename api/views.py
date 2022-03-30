@@ -36,7 +36,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     pagination_class = PageNumberPagination
 
 
-class TitlesViewSet(viewsets.ModelViewSet):
+class TitleViewSet(viewsets.ModelViewSet):
     queryset = Title.objects.all()
     permission_classes = (IsAdminOrReadOnly,)
     pagination_class = PageNumberPagination
@@ -49,7 +49,7 @@ class TitlesViewSet(viewsets.ModelViewSet):
         return TitleSerializer
 
 
-class CategoryViewSet(CreateDestroyListViewSet):
+class CategoriesViewSet(CreateDestroyListViewSet):
     queryset = Categories.objects.all()
     serializer_class = CategoriesSerializer
     lookup_field = 'slug'
