@@ -25,7 +25,3 @@ class ReviewViewSet(viewsets.ModelViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
     pagination_class = PageNumberPagination
-
-    def get_queryset(self):
-        
-        return super().get_queryset()

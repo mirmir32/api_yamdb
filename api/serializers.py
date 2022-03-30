@@ -5,6 +5,7 @@ from reviews.models import Categories, Comment, Genre, Review, Title
 
 RANK = settings.RANKS
 
+
 class CategoriesSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ('name', 'slug')
@@ -45,7 +46,7 @@ class CreateTitleSerializer(serializers.ModelSerializer):
         fields = '__all__'
         model = Title
 
-        
+
 class ReviewSerializer(serializers.ModelSerializer):
     author = SlugRelatedField(slug_field='username',
                               read_only=True,
