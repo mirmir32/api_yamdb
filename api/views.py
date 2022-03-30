@@ -1,9 +1,18 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters, viewsets
 from rest_framework.pagination import PageNumberPagination
-from reviews.models import Comment, Review, Title
+from reviews.models import Comment, Review, Title, Genre, Categories
 
-from .serializers import CommentSerializer, ReviewSerializer
+from .filters import TitleGenreFilter
+from .mixins import CreateDestroyListViewSet
+from .permissions import IsAdminOrReadOnly
+from .serializers import (CommentSerializer,
+                          ReviewSerializer,
+                          TitleSerializer,
+                          TitleDeSerializer,
+                          CategoriesSerializer,
+                          GenreSerializer)
 
 
 class ReviewViewSet(viewsets.ModelViewSet):
@@ -25,3 +34,36 @@ class ReviewViewSet(viewsets.ModelViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
     pagination_class = PageNumberPagination
+
+
+class TitlesViewSet(viewsets.ModelViewSet):
+    queryset = Title.objects.all()
+    permission_classes = (IsAdminOrReadOnly,)
+    pagination_class = PageNumberPagination
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = TitleGenreFilter
+
+    def get_serializer_class(self):
+        if self.action == 'create' or self.action == 'partial_update':
+            return TitleDeSerializer
+        return TitleSerializer
+
+
+class CategoryViewSet(CreateDestroyListViewSet):
+    queryset = Categories.objects.all()
+    serializer_class = CategoriesSerializer
+    lookup_field = 'slug'
+    pagination_class = PageNumberPagination
+    permission_classes = (IsAdminOrReadOnly,)
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('=name',)
+
+
+class GenreViewSet(CreateDestroyListViewSet):
+    queryset = Genre.objects.all().order_by('id')
+    serializer_class = GenreSerializer
+    lookup_field = 'slug'
+    pagination_class = PageNumberPagination
+    permission_classes = (IsAdminOrReadOnly,)
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('=name',)

@@ -20,6 +20,9 @@ class GenreSerializer(serializers.ModelSerializer):
 
 
 class TitleSerializer(serializers.ModelSerializer):
+    """
+    Cериализует данные Title.
+    """
     genre = GenreSerializer(read_only=True, many=True)
     categories = CategoriesSerializer(read_only=True)
     rating = serializers.SerializerMethodField()
@@ -28,10 +31,20 @@ class TitleSerializer(serializers.ModelSerializer):
         model = Title
         fields = ('id', 'name', 'year', 'description',
                   'genre', 'categories', 'rating')
-        read_only_fields = ('id',)
+        read_only_fields = (
+            'id',
+            'name',
+            'year',
+            'description',
+            'genre',
+            'category',
+            'rating')
 
 
-class CreateTitleSerializer(serializers.ModelSerializer):
+class TitleDeSerializer(serializers.ModelSerializer):
+    """
+    Десериализует данные Title.
+    """
     categories = serializers.SlugRelatedField(
         slug_field='slug',
         queryset=Categories.objects.all()
