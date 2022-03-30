@@ -81,6 +81,7 @@ class CreatedModel(models.Model):
     class Meta:
         abstract = True
 
+
 class Review(CreatedModel):
     """
     Review creates reviews on exact title which are linked to the title.
@@ -120,6 +121,7 @@ class Review(CreatedModel):
 
     def __str__(self) -> str:
         return self.text[:25]
+
 
 class Comment(CreatedModel):
     """
