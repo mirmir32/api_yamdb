@@ -21,10 +21,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_filters',
+    'rest_framework',
+    'reviews.apps.ReviewsConfig',
     'users.apps.UsersConfig',
     'api.apps.ApiConfig',
-    'reviews.apps.ReviewsConfig',
 ]
 
 MIDDLEWARE = [
@@ -109,3 +109,13 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
 AUTH_USER_MODEL = 'users.User'
 
 RANKS = range(1, 11,)
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
