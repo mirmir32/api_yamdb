@@ -2,7 +2,6 @@ from django.conf import settings
 from rest_framework import serializers
 from rest_framework.relations import SlugRelatedField
 from reviews.models import Categories, Comment, Genre, Review, Title
-from users.models import User
 
 RANK = settings.RANKS
 
@@ -90,11 +89,3 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ['text', 'author', 'pub_date']
-
-
-class UserSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = User
-        fields = (
-            'username', 'email', 'first_name', 'last_name', 'bio', 'role')

@@ -3,27 +3,22 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, viewsets
 from rest_framework.pagination import PageNumberPagination
 from reviews.models import Comment, Review, Title, Genre, Categories
-from users.models import User
 
 from .filters import TitleGenreFilter
 from .mixins import CreateDestroyListViewSet
-from .permissions import (IsAdminOrReadOnly,
-                          IsOwnerModeratorAdminOrReadOnly,
-                          IsAdmin)
+from .permissions import IsAdminOrReadOnly
 from .serializers import (CommentSerializer,
                           ReviewSerializer,
                           TitleSerializer,
                           TitleDeSerializer,
                           CategoriesSerializer,
-                          GenreSerializer,
-                          UserSerializer)
+                          GenreSerializer)
 
 
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     pagination_class = PageNumberPagination
-    permission_classes = (IsOwnerModeratorAdminOrReadOnly,)
 
     def get_queryset(self):
         title = get_object_or_404(Title, id=self.kwargs['title_id'])
@@ -39,7 +34,6 @@ class ReviewViewSet(viewsets.ModelViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
     pagination_class = PageNumberPagination
-    permission_classes = (IsOwnerModeratorAdminOrReadOnly,)
 
 
 class TitleViewSet(viewsets.ModelViewSet):
@@ -73,13 +67,3 @@ class GenreViewSet(CreateDestroyListViewSet):
     permission_classes = (IsAdminOrReadOnly,)
     filter_backends = (filters.SearchFilter,)
     search_fields = ('=name',)
-
-
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by('id')
-    serializer_class = UserSerializer
-    lookup_field = 'username'
-    pagination_class = PageNumberPagination
-    permission_classes = (IsAdmin,)
-    filter_backends = (filters.SearchFilter,)
-    search_fields = ('=username',)
