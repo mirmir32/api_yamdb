@@ -3,7 +3,6 @@ import datetime as dt
 from django.conf import settings
 from django.core.validators import MaxValueValidator
 from django.db import models
-from users.models import User
 
 from .validators import validate_emptiness
 
@@ -90,18 +89,16 @@ class Review(CreatedModel):
         Title,
         verbose_name='Review',
         on_delete=models.CASCADE,
-        related_name='reviews',
-        blank=True,
-        null=True
+        related_name='review_title'
     )
     author = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         verbose_name='user',
         on_delete=models.CASCADE,
-        related_name='reviews'
+        related_name='review_author'
     )
     score = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         verbose_name='rank',
         choices=RANK,
@@ -132,7 +129,7 @@ class Comment(CreatedModel):
         Title,
         verbose_name='Review',
         on_delete=models.CASCADE,
-        related_name='reviews',
+        related_name='changename_title',
         blank=True,
         null=True
     )
@@ -140,15 +137,15 @@ class Comment(CreatedModel):
         Review,
         verbose_name='Comment',
         on_delete=models.CASCADE,
-        related_name='comments',
+        related_name='comment_review',
         blank=False,
         null=False
     )
     author = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         verbose_name='user',
         on_delete=models.CASCADE,
-        related_name='comments'
+        related_name='comment_author'
     )
     text = models.TextField(
         max_length=50000,
