@@ -10,29 +10,33 @@ RANK = settings.RANKS
 
 
 class Categories(models.Model):
-    name = models.TextField('Название', max_length=50)
-    slug = models.SlugField('slug', unique=True, db_index=True)
+    name = models.CharField('Название', max_length=256)
+    slug = models.SlugField('slug', max_length=50, unique=True, db_index=True)
 
     class Meta:
         ordering = ('name',)
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
 
     def __str__(self):
         return self.name
 
 
 class Genre(models.Model):
-    name = models.TextField('Название', max_length=50)
-    slug = models.SlugField('slug', unique=True, db_index=True)
+    name = models.CharField('Название', max_length=256)
+    slug = models.SlugField('slug',max_length=50, unique=True, db_index=True)
 
     class Meta:
         ordering = ('name',)
+        verbose_name = 'Жанр'
+        verbose_name_plural = 'Жанры'
 
     def __str__(self):
         return self.name
 
 
 class Title(models.Model):
-    name = models.TextField('Название', max_length=50, db_index=True)
+    name = models.TextField('Название', max_length=256, db_index=True)
     year = models.IntegerField(
         blank=True,
         validators=[
@@ -59,13 +63,15 @@ class Title(models.Model):
     )
     description = models.CharField(
         'Описание',
-        max_length=200,
+        max_length=256,
         null=True,
         blank=True
     )
 
     class Meta:
         ordering = ('-year',)
+        verbose_name = 'Название произведения'
+        verbose_name_plural = 'Названия произведений'
 
     def __str__(self):
         return self.name

@@ -22,12 +22,14 @@ class GenreSerializer(serializers.ModelSerializer):
 
 
 class TitleSerializer(serializers.ModelSerializer):
-    """
-    Cериализует данные Title.
-    """
     genre = GenreSerializer(read_only=True, many=True)
     categories = CategoriesSerializer(read_only=True)
     rating = serializers.SerializerMethodField()
+
+    def get_rating(self, obj):
+        return Review.objects.filter(title__id=obj.id
+                                     ).aggregate(rating=Avg('score')
+                                                 ).get('rating')
 
     class Meta:
         model = Title
@@ -43,10 +45,7 @@ class TitleSerializer(serializers.ModelSerializer):
             'rating')
 
 
-class TitleDeSerializer(serializers.ModelSerializer):
-    """
-    Десериализует данные Title.
-    """
+class TitleCreateSerializer(serializers.ModelSerializer):
     categories = serializers.SlugRelatedField(
         slug_field='slug',
         queryset=Categories.objects.all()
