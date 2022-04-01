@@ -1,5 +1,7 @@
 from django.conf import settings
-from rest_framework import serializers
+from django.shortcuts import get_object_or_404
+from django.db.models import Avg
+from rest_framework import serializers, status
 from rest_framework.relations import SlugRelatedField
 from reviews.models import Categories, Comment, Genre, Review, Title
 
@@ -64,20 +66,41 @@ class ReviewSerializer(serializers.ModelSerializer):
     author = SlugRelatedField(slug_field='username',
                               read_only=True,
                               allow_null=False)
+    score = serializers.IntegerField()
+    rating = serializers.SerializerMethodField()
 
     class Meta:
         model = Review
-        fields = ['text', 'author', 'score', 'pub_date']
+        fields = ['text', 'author', 'score', 'pub_date', 'rating']
 
-    def validate(self, data):
+    def get_rating(self, obj):
+        return Avg(obj.score.all())
+
+    def validate_score(self, score):
         """
         Validator for checking if a field 'score' has required type of data
         for ranks - integer. The digit must be from the tuple RANK (1-10).
         """
-        if data['score'] is not int or data['score'] not in RANK:
+        if score is not int and score not in RANK:
             raise serializers.ValidationError(
                 'Type of data is not integer.'
             )
+        return score
+
+    def validate_review(self, data):
+        """
+        Validator for blocking other attempts for reviewing if
+        a user has already left one review on the exact title.
+        """
+        author = self.context['request'].user
+        title = self.context['title_id'].review_title.pk
+        review = get_object_or_404(Review, title_id=title, author=author)
+        if self.context['request'].method == 'POST':
+            if review.exists():
+                raise serializers.ValidationError(
+                    detail='Вы уже оставили свой отзыв к данному произведению.',
+                    code=status.HTTP_400_BAD_REQUEST
+                )
         return data
 
 
