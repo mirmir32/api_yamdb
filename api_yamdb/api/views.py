@@ -11,7 +11,7 @@ from .permissions import (IsAdminOrReadOnly,
 from .serializers import (CommentSerializer,
                           ReviewSerializer,
                           TitleSerializer,
-                          TitleDeSerializer,
+                          TitleCreateSerializer,
                           CategoriesSerializer,
                           GenreSerializer)
 from .throttling import PostUserRateThrottle
@@ -81,7 +81,7 @@ class TitleViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == 'create' or self.action == 'partial_update':
-            return TitleDeSerializer
+            return TitleCreateSerializer
         return TitleSerializer
 
 
