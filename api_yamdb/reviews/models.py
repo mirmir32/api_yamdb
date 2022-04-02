@@ -46,7 +46,7 @@ class Title(models.Model):
             )
         ]
     )
-    categories = models.ForeignKey(
+    category = models.ForeignKey(
         Categories,
         on_delete=models.SET_NULL,
         blank=True,

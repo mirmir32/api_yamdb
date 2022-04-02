@@ -1,0 +1,1302 @@
+============================= test session starts =============================
+platform win32 -- Python 3.7.0, pytest-6.2.4, py-1.11.0, pluggy-0.13.1 -- c:\dev\api_yamdb\venv\scripts\python.exe
+django: settings: api_yamdb.settings (from ini)
+rootdir: C:\Dev\api_yamdb, configfile: pytest.ini, testpaths: tests/
+plugins: django-4.4.0, pythonpath-0.7.3
+collecting ... collected 53 items
+
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_nodata_signup PASSED [  1%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_invalid_data_signup PASSED [  3%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_valid_data_user_signup PASSED [  5%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_valid_data_admin_create_user PASSED [  7%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_obtain_jwt_token_invalid_data FAILED [  9%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_registration_me_username_restricted PASSED [ 11%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_registration_same_email_restricted PASSED [ 13%]
+tests/test_01_users.py::Test01UserAPI::test_01_users_not_authenticated PASSED [ 15%]
+tests/test_01_users.py::Test01UserAPI::test_02_users_username_not_authenticated PASSED [ 16%]
+tests/test_01_users.py::Test01UserAPI::test_03_users_me_not_authenticated PASSED [ 18%]
+tests/test_01_users.py::Test01UserAPI::test_04_users_get_admin PASSED    [ 20%]
+tests/test_01_users.py::Test01UserAPI::test_04_02_users_get_search PASSED [ 22%]
+tests/test_01_users.py::Test01UserAPI::test_04_01_users_get_admin_only PASSED [ 24%]
+tests/test_01_users.py::Test01UserAPI::test_05_01_users_post_admin FAILED [ 26%]
+tests/test_01_users.py::Test01UserAPI::test_05_02_users_post_user_superuser PASSED [ 28%]
+tests/test_01_users.py::Test01UserAPI::test_06_users_username_get_admin PASSED [ 30%]
+tests/test_01_users.py::Test01UserAPI::test_06_users_username_get_not_admin PASSED [ 32%]
+tests/test_01_users.py::Test01UserAPI::test_07_01_users_username_patch_admin PASSED [ 33%]
+tests/test_01_users.py::Test01UserAPI::test_07_02_users_username_patch_moderator PASSED [ 35%]
+tests/test_01_users.py::Test01UserAPI::test_07_03_users_username_patch_user PASSED [ 37%]
+tests/test_01_users.py::Test01UserAPI::test_07_05_users_username_put_user_restricted PASSED [ 39%]
+tests/test_01_users.py::Test01UserAPI::test_08_01_users_username_delete_admin PASSED [ 41%]
+tests/test_01_users.py::Test01UserAPI::test_08_02_users_username_delete_moderator PASSED [ 43%]
+tests/test_01_users.py::Test01UserAPI::test_08_03_users_username_delete_user PASSED [ 45%]
+tests/test_01_users.py::Test01UserAPI::test_08_04_users_username_delete_superuser PASSED [ 47%]
+tests/test_01_users.py::Test01UserAPI::test_09_users_check_permissions PASSED [ 49%]
+tests/test_01_users.py::Test01UserAPI::test_10_users_me_get_admin PASSED [ 50%]
+tests/test_01_users.py::Test01UserAPI::test_11_01_users_me_patch_admin PASSED [ 52%]
+tests/test_01_users.py::Test01UserAPI::test_11_02_users_me_patch_user PASSED [ 54%]
+tests/test_02_category.py::Test02CategoryAPI::test_01_category_not_auth PASSED [ 56%]
+tests/test_02_category.py::Test02CategoryAPI::test_02_category_admin PASSED [ 58%]
+tests/test_02_category.py::Test02CategoryAPI::test_03_category_delete_admin PASSED [ 60%]
+tests/test_02_category.py::Test02CategoryAPI::test_04_category_check_permission_admin PASSED [ 62%]
+tests/test_02_category.py::Test02CategoryAPI::test_05_category_create_user PASSED [ 64%]
+tests/test_02_category.py::Test02CategoryAPI::test_06_category_create_moderator PASSED [ 66%]
+tests/test_03_genre.py::Test03GenreAPI::test_01_genre_not_auth PASSED    [ 67%]
+tests/test_03_genre.py::Test03GenreAPI::test_02_genre PASSED             [ 69%]
+tests/test_03_genre.py::Test03GenreAPI::test_03_genres_delete PASSED     [ 71%]
+tests/test_03_genre.py::Test03GenreAPI::test_04_genres_check_permission PASSED [ 73%]
+tests/test_03_genre.py::Test03GenreAPI::test_05_genre_create_user PASSED [ 75%]
+tests/test_03_genre.py::Test03GenreAPI::test_06_genre_create_moderator PASSED [ 77%]
+tests/test_04_title.py::Test04TitleAPI::test_01_title_not_auth PASSED    [ 79%]
+tests/test_04_title.py::Test04TitleAPI::test_02_title_admin PASSED       [ 81%]
+tests/test_04_title.py::Test04TitleAPI::test_03_titles_detail PASSED     [ 83%]
+tests/test_04_title.py::Test04TitleAPI::test_04_titles_check_permission PASSED [ 84%]
+tests/test_05_review.py::Test05ReviewAPI::test_01_review_not_auth FAILED [ 86%]
+tests/test_05_review.py::Test05ReviewAPI::test_02_review_admin FAILED    [ 88%]
+tests/test_05_review.py::Test05ReviewAPI::test_03_review_detail FAILED   [ 90%]
+tests/test_05_review.py::Test05ReviewAPI::test_04_reviews_check_permission FAILED [ 92%]
+tests/test_06_comment.py::Test06CommentAPI::test_01_comment_not_auth FAILED [ 94%]
+tests/test_06_comment.py::Test06CommentAPI::test_02_comment FAILED       [ 96%]
+tests/test_06_comment.py::Test06CommentAPI::test_03_review_detail FAILED [ 98%]
+tests/test_06_comment.py::Test06CommentAPI::test_04_comment_check_permission FAILED [100%]
+
+================================== FAILURES ===================================
+________ Test00UserRegistration.test_00_obtain_jwt_token_invalid_data _________
+
+self = <tests.test_00_user_registration.Test00UserRegistration object at 0x000002274A9D5898>
+client = <django.test.client.Client object at 0x000002274AD95358>
+
+    @pytest.mark.django_db(transaction=True)
+    def test_00_obtain_jwt_token_invalid_data(self, client):
+    
+        request_type = 'POST'
+        response = client.post(self.url_token)
+        assert response.status_code != 404, (
+            f'Страница `{self.url_token}` не найдена, проверьте этот адрес в *urls.py*'
+        )
+    
+        code = 400
+        assert response.status_code == code, (
+            f'Проверьте, что при POST запросе `{self.url_token}` без параметров, '
+            f'возвращается статус {code}'
+        )
+    
+        invalid_data = {
+            'confirmation_code': 12345
+        }
+        response = client.post(self.url_token, data=invalid_data)
+        assert response.status_code == code, (
+            f'Проверьте, что при POST запросе `{self.url_token}` без username, '
+            f'возвращается статус {code}'
+        )
+    
+        invalid_data = {
+            'username': 'unexisting_user',
+            'confirmation_code': 12345
+        }
+        response = client.post(self.url_token, data=invalid_data)
+        code = 404
+        assert response.status_code == code, (
+            f'Проверьте, что при POST запросе `{self.url_token}` с несуществующим username, '
+            f'возвращается статус {code}'
+        )
+    
+        valid_email = 'valid@yamdb.fake'
+        valid_username = 'valid_username'
+    
+        valid_data = {
+            'email': valid_email,
+            'username': valid_username
+        }
+        response = client.post(self.url_signup, data=valid_data)
+        code = 200
+        assert response.status_code == code, (
+            f'Проверьте, что при {request_type} запросе `{self.url_signup}` с валидными данными '
+            f'создается пользователь и возвращается статус {code}'
+        )
+    
+        invalid_data = {
+            'username': valid_username,
+            'confirmation_code': 12345
+        }
+        response = client.post(self.url_token, data=invalid_data)
+        code = 400
+>       assert response.status_code == code, (
+            f'Проверьте, что при POST запросе `{self.url_token}` с валидным username, '
+            f'но невалидным confirmation_code, возвращается статус {code}'
+        )
+E       AssertionError: Проверьте, что при POST запросе `/api/v1/auth/token/` с валидным username, но невалидным confirmation_code, возвращается статус 400
+E       assert 200 == 400
+E         +200
+E         -400
+
+tests\test_00_user_registration.py:222: AssertionError
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:228 Bad Request: /api/v1/auth/token/
+WARNING  django.request:log.py:228 Bad Request: /api/v1/auth/token/
+WARNING  django.request:log.py:228 Not Found: /api/v1/auth/token/
+__________________ Test01UserAPI.test_05_01_users_post_admin __________________
+
+self = <tests.test_01_users.Test01UserAPI object at 0x000002274AE8F828>
+admin_client = <rest_framework.test.APIClient object at 0x000002274AE2C400>
+admin = <CustomUser: TestAdmin>
+
+    @pytest.mark.django_db(transaction=True)
+    def test_05_01_users_post_admin(self, admin_client, admin):
+        empty_data = {}
+        response = admin_client.post('/api/v1/users/', data=empty_data)
+        assert response.status_code == 400, (
+            'Проверьте, что при POST запросе `/api/v1/users/` с пустыми данными возвращаетe 400'
+        )
+        no_email_data = {
+            'username': 'TestUser_noemail',
+            'role': 'user'
+        }
+        response = admin_client.post('/api/v1/users/', data=no_email_data)
+>       assert response.status_code == 400, (
+            'Проверьте, что при POST запросе `/api/v1/users/` без email, возвращаетe статус 400'
+        )
+E       AssertionError: Проверьте, что при POST запросе `/api/v1/users/` без email, возвращаетe статус 400
+E       assert 201 == 400
+E         +201
+E         -400
+
+tests\test_01_users.py:143: AssertionError
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:228 Bad Request: /api/v1/users/
+___________________ Test05ReviewAPI.test_01_review_not_auth ___________________
+
+self = <api.throttling.PostUserRateThrottle object at 0x000002274AFC4C18>
+
+    def get_rate(self):
+        """
+        Determine the string representation of the allowed request rate.
+        """
+        if not getattr(self, 'scope', None):
+            msg = ("You must set either `.scope` or `.rate` for '%s' throttle" %
+                   self.__class__.__name__)
+            raise ImproperlyConfigured(msg)
+    
+        try:
+>           return self.THROTTLE_RATES[self.scope]
+E           KeyError: 'post_user'
+
+venv\lib\site-packages\rest_framework\throttling.py:92: KeyError
+
+During handling of the above exception, another exception occurred:
+
+self = <tests.test_05_review.Test05ReviewAPI object at 0x000002274AEF02E8>
+client = <django.test.client.Client object at 0x000002274AE3B9B0>
+admin_client = <rest_framework.test.APIClient object at 0x000002274AE3B8D0>
+
+    @pytest.mark.django_db(transaction=True)
+    def test_01_review_not_auth(self, client, admin_client):
+        titles, _, _ = create_titles(admin_client)
+>       response = client.get(f'/api/v1/titles/{titles[0]["id"]}/reviews/')
+
+tests\test_05_review.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+venv\lib\site-packages\django\test\client.py:535: in get
+    response = super().get(path, data=data, secure=secure, **extra)
+venv\lib\site-packages\django\test\client.py:347: in get
+    **extra,
+venv\lib\site-packages\django\test\client.py:422: in generic
+    return self.request(**r)
+venv\lib\site-packages\django\test\client.py:503: in request
+    raise exc_value
+venv\lib\site-packages\django\core\handlers\exception.py:34: in inner
+    response = get_response(request)
+venv\lib\site-packages\django\core\handlers\base.py:115: in _get_response
+    response = self.process_exception_by_middleware(e, request)
+venv\lib\site-packages\django\core\handlers\base.py:113: in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+venv\lib\site-packages\django\views\decorators\csrf.py:54: in wrapped_view
+    return view_func(*args, **kwargs)
+venv\lib\site-packages\rest_framework\viewsets.py:125: in view
+    return self.dispatch(request, *args, **kwargs)
+venv\lib\site-packages\rest_framework\views.py:509: in dispatch
+    response = self.handle_exception(exc)
+venv\lib\site-packages\rest_framework\views.py:469: in handle_exception
+    self.raise_uncaught_exception(exc)
+venv\lib\site-packages\rest_framework\views.py:480: in raise_uncaught_exception
+    raise exc
+venv\lib\site-packages\rest_framework\views.py:497: in dispatch
+    self.initial(request, *args, **kwargs)
+venv\lib\site-packages\rest_framework\views.py:416: in initial
+    self.check_throttles(request)
+venv\lib\site-packages\rest_framework\views.py:358: in check_throttles
+    for throttle in self.get_throttles():
+venv\lib\site-packages\rest_framework\views.py:284: in get_throttles
+    return [throttle() for throttle in self.throttle_classes]
+venv\lib\site-packages\rest_framework\views.py:284: in <listcomp>
+    return [throttle() for throttle in self.throttle_classes]
+venv\lib\site-packages\rest_framework\throttling.py:70: in __init__
+    self.rate = self.get_rate()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <api.throttling.PostUserRateThrottle object at 0x000002274AFC4C18>
+
+    def get_rate(self):
+        """
+        Determine the string representation of the allowed request rate.
+        """
+        if not getattr(self, 'scope', None):
+            msg = ("You must set either `.scope` or `.rate` for '%s' throttle" %
+                   self.__class__.__name__)
+            raise ImproperlyConfigured(msg)
+    
+        try:
+            return self.THROTTLE_RATES[self.scope]
+        except KeyError:
+            msg = "No default throttle rate set for '%s' scope" % self.scope
+>           raise ImproperlyConfigured(msg)
+E           django.core.exceptions.ImproperlyConfigured: No default throttle rate set for 'post_user' scope
+
+venv\lib\site-packages\rest_framework\throttling.py:95: ImproperlyConfigured
+------------------------------ Captured log call ------------------------------
+ERROR    django.request:log.py:228 Internal Server Error: /api/v1/titles/8/reviews/
+Traceback (most recent call last):
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 92, in get_rate
+    return self.THROTTLE_RATES[self.scope]
+KeyError: 'post_user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 416, in initial
+    self.check_throttles(request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 358, in check_throttles
+    for throttle in self.get_throttles():
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 284, in get_throttles
+    return [throttle() for throttle in self.throttle_classes]
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 284, in <listcomp>
+    return [throttle() for throttle in self.throttle_classes]
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 70, in __init__
+    self.rate = self.get_rate()
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 95, in get_rate
+    raise ImproperlyConfigured(msg)
+django.core.exceptions.ImproperlyConfigured: No default throttle rate set for 'post_user' scope
+____________________ Test05ReviewAPI.test_02_review_admin _____________________
+
+self = <api.throttling.PostUserRateThrottle object at 0x000002274AEB97B8>
+
+    def get_rate(self):
+        """
+        Determine the string representation of the allowed request rate.
+        """
+        if not getattr(self, 'scope', None):
+            msg = ("You must set either `.scope` or `.rate` for '%s' throttle" %
+                   self.__class__.__name__)
+            raise ImproperlyConfigured(msg)
+    
+        try:
+>           return self.THROTTLE_RATES[self.scope]
+E           KeyError: 'post_user'
+
+venv\lib\site-packages\rest_framework\throttling.py:92: KeyError
+
+During handling of the above exception, another exception occurred:
+
+self = <tests.test_05_review.Test05ReviewAPI object at 0x000002274B117940>
+admin_client = <rest_framework.test.APIClient object at 0x000002274B10AE48>
+admin = <CustomUser: TestAdmin>
+
+    @pytest.mark.django_db(transaction=True)
+    def test_02_review_admin(self, admin_client, admin):
+        titles, _, _ = create_titles(admin_client)
+        user, moderator = create_users_api(admin_client)
+        client_user = auth_client(user)
+        client_moderator = auth_client(moderator)
+        data = {}
+>       response = admin_client.post(f'/api/v1/titles/{titles[0]["id"]}/reviews/', data=data)
+
+tests\test_05_review.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+venv\lib\site-packages\rest_framework\test.py:296: in post
+    path, data=data, format=format, content_type=content_type, **extra)
+venv\lib\site-packages\rest_framework\test.py:209: in post
+    return self.generic('POST', path, data, content_type, **extra)
+venv\lib\site-packages\rest_framework\test.py:234: in generic
+    method, path, data, content_type, secure, **extra)
+venv\lib\site-packages\django\test\client.py:422: in generic
+    return self.request(**r)
+venv\lib\site-packages\rest_framework\test.py:285: in request
+    return super().request(**kwargs)
+venv\lib\site-packages\rest_framework\test.py:237: in request
+    request = super().request(**kwargs)
+venv\lib\site-packages\django\test\client.py:503: in request
+    raise exc_value
+venv\lib\site-packages\django\core\handlers\exception.py:34: in inner
+    response = get_response(request)
+venv\lib\site-packages\django\core\handlers\base.py:115: in _get_response
+    response = self.process_exception_by_middleware(e, request)
+venv\lib\site-packages\django\core\handlers\base.py:113: in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+venv\lib\site-packages\django\views\decorators\csrf.py:54: in wrapped_view
+    return view_func(*args, **kwargs)
+venv\lib\site-packages\rest_framework\viewsets.py:125: in view
+    return self.dispatch(request, *args, **kwargs)
+venv\lib\site-packages\rest_framework\views.py:509: in dispatch
+    response = self.handle_exception(exc)
+venv\lib\site-packages\rest_framework\views.py:469: in handle_exception
+    self.raise_uncaught_exception(exc)
+venv\lib\site-packages\rest_framework\views.py:480: in raise_uncaught_exception
+    raise exc
+venv\lib\site-packages\rest_framework\views.py:497: in dispatch
+    self.initial(request, *args, **kwargs)
+venv\lib\site-packages\rest_framework\views.py:416: in initial
+    self.check_throttles(request)
+venv\lib\site-packages\rest_framework\views.py:358: in check_throttles
+    for throttle in self.get_throttles():
+venv\lib\site-packages\rest_framework\views.py:284: in get_throttles
+    return [throttle() for throttle in self.throttle_classes]
+venv\lib\site-packages\rest_framework\views.py:284: in <listcomp>
+    return [throttle() for throttle in self.throttle_classes]
+venv\lib\site-packages\rest_framework\throttling.py:70: in __init__
+    self.rate = self.get_rate()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <api.throttling.PostUserRateThrottle object at 0x000002274AEB97B8>
+
+    def get_rate(self):
+        """
+        Determine the string representation of the allowed request rate.
+        """
+        if not getattr(self, 'scope', None):
+            msg = ("You must set either `.scope` or `.rate` for '%s' throttle" %
+                   self.__class__.__name__)
+            raise ImproperlyConfigured(msg)
+    
+        try:
+            return self.THROTTLE_RATES[self.scope]
+        except KeyError:
+            msg = "No default throttle rate set for '%s' scope" % self.scope
+>           raise ImproperlyConfigured(msg)
+E           django.core.exceptions.ImproperlyConfigured: No default throttle rate set for 'post_user' scope
+
+venv\lib\site-packages\rest_framework\throttling.py:95: ImproperlyConfigured
+------------------------------ Captured log call ------------------------------
+ERROR    django.request:log.py:228 Internal Server Error: /api/v1/titles/10/reviews/
+Traceback (most recent call last):
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 92, in get_rate
+    return self.THROTTLE_RATES[self.scope]
+KeyError: 'post_user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 416, in initial
+    self.check_throttles(request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 358, in check_throttles
+    for throttle in self.get_throttles():
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 284, in get_throttles
+    return [throttle() for throttle in self.throttle_classes]
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 284, in <listcomp>
+    return [throttle() for throttle in self.throttle_classes]
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 70, in __init__
+    self.rate = self.get_rate()
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 95, in get_rate
+    raise ImproperlyConfigured(msg)
+django.core.exceptions.ImproperlyConfigured: No default throttle rate set for 'post_user' scope
+____________________ Test05ReviewAPI.test_03_review_detail ____________________
+
+self = <api.throttling.PostUserRateThrottle object at 0x000002274A7C5BE0>
+
+    def get_rate(self):
+        """
+        Determine the string representation of the allowed request rate.
+        """
+        if not getattr(self, 'scope', None):
+            msg = ("You must set either `.scope` or `.rate` for '%s' throttle" %
+                   self.__class__.__name__)
+            raise ImproperlyConfigured(msg)
+    
+        try:
+>           return self.THROTTLE_RATES[self.scope]
+E           KeyError: 'post_user'
+
+venv\lib\site-packages\rest_framework\throttling.py:92: KeyError
+
+During handling of the above exception, another exception occurred:
+
+self = <tests.test_05_review.Test05ReviewAPI object at 0x000002274A8EAF28>
+client = <django.test.client.Client object at 0x000002274A6DCBE0>
+admin_client = <rest_framework.test.APIClient object at 0x000002274A6DCF60>
+admin = <CustomUser: TestAdmin>
+
+    @pytest.mark.django_db(transaction=True)
+    def test_03_review_detail(self, client, admin_client, admin):
+>       reviews, titles, user, moderator = create_reviews(admin_client, admin)
+
+tests\test_05_review.py:202: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\common.py:90: in create_reviews
+    result.append({'id': create_review(admin_client, titles[0]["id"], 'qwerty', 5),
+tests\common.py:82: in create_review
+    response = uclient.post(f'/api/v1/titles/{title_id}/reviews/', data=data)
+venv\lib\site-packages\rest_framework\test.py:296: in post
+    path, data=data, format=format, content_type=content_type, **extra)
+venv\lib\site-packages\rest_framework\test.py:209: in post
+    return self.generic('POST', path, data, content_type, **extra)
+venv\lib\site-packages\rest_framework\test.py:234: in generic
+    method, path, data, content_type, secure, **extra)
+venv\lib\site-packages\django\test\client.py:422: in generic
+    return self.request(**r)
+venv\lib\site-packages\rest_framework\test.py:285: in request
+    return super().request(**kwargs)
+venv\lib\site-packages\rest_framework\test.py:237: in request
+    request = super().request(**kwargs)
+venv\lib\site-packages\django\test\client.py:503: in request
+    raise exc_value
+venv\lib\site-packages\django\core\handlers\exception.py:34: in inner
+    response = get_response(request)
+venv\lib\site-packages\django\core\handlers\base.py:115: in _get_response
+    response = self.process_exception_by_middleware(e, request)
+venv\lib\site-packages\django\core\handlers\base.py:113: in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+venv\lib\site-packages\django\views\decorators\csrf.py:54: in wrapped_view
+    return view_func(*args, **kwargs)
+venv\lib\site-packages\rest_framework\viewsets.py:125: in view
+    return self.dispatch(request, *args, **kwargs)
+venv\lib\site-packages\rest_framework\views.py:509: in dispatch
+    response = self.handle_exception(exc)
+venv\lib\site-packages\rest_framework\views.py:469: in handle_exception
+    self.raise_uncaught_exception(exc)
+venv\lib\site-packages\rest_framework\views.py:480: in raise_uncaught_exception
+    raise exc
+venv\lib\site-packages\rest_framework\views.py:497: in dispatch
+    self.initial(request, *args, **kwargs)
+venv\lib\site-packages\rest_framework\views.py:416: in initial
+    self.check_throttles(request)
+venv\lib\site-packages\rest_framework\views.py:358: in check_throttles
+    for throttle in self.get_throttles():
+venv\lib\site-packages\rest_framework\views.py:284: in get_throttles
+    return [throttle() for throttle in self.throttle_classes]
+venv\lib\site-packages\rest_framework\views.py:284: in <listcomp>
+    return [throttle() for throttle in self.throttle_classes]
+venv\lib\site-packages\rest_framework\throttling.py:70: in __init__
+    self.rate = self.get_rate()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <api.throttling.PostUserRateThrottle object at 0x000002274A7C5BE0>
+
+    def get_rate(self):
+        """
+        Determine the string representation of the allowed request rate.
+        """
+        if not getattr(self, 'scope', None):
+            msg = ("You must set either `.scope` or `.rate` for '%s' throttle" %
+                   self.__class__.__name__)
+            raise ImproperlyConfigured(msg)
+    
+        try:
+            return self.THROTTLE_RATES[self.scope]
+        except KeyError:
+            msg = "No default throttle rate set for '%s' scope" % self.scope
+>           raise ImproperlyConfigured(msg)
+E           django.core.exceptions.ImproperlyConfigured: No default throttle rate set for 'post_user' scope
+
+venv\lib\site-packages\rest_framework\throttling.py:95: ImproperlyConfigured
+------------------------------ Captured log call ------------------------------
+ERROR    django.request:log.py:228 Internal Server Error: /api/v1/titles/12/reviews/
+Traceback (most recent call last):
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 92, in get_rate
+    return self.THROTTLE_RATES[self.scope]
+KeyError: 'post_user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 416, in initial
+    self.check_throttles(request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 358, in check_throttles
+    for throttle in self.get_throttles():
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 284, in get_throttles
+    return [throttle() for throttle in self.throttle_classes]
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 284, in <listcomp>
+    return [throttle() for throttle in self.throttle_classes]
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 70, in __init__
+    self.rate = self.get_rate()
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 95, in get_rate
+    raise ImproperlyConfigured(msg)
+django.core.exceptions.ImproperlyConfigured: No default throttle rate set for 'post_user' scope
+______________ Test05ReviewAPI.test_04_reviews_check_permission _______________
+
+self = <api.throttling.PostUserRateThrottle object at 0x000002274ADF93C8>
+
+    def get_rate(self):
+        """
+        Determine the string representation of the allowed request rate.
+        """
+        if not getattr(self, 'scope', None):
+            msg = ("You must set either `.scope` or `.rate` for '%s' throttle" %
+                   self.__class__.__name__)
+            raise ImproperlyConfigured(msg)
+    
+        try:
+>           return self.THROTTLE_RATES[self.scope]
+E           KeyError: 'post_user'
+
+venv\lib\site-packages\rest_framework\throttling.py:92: KeyError
+
+During handling of the above exception, another exception occurred:
+
+self = <tests.test_05_review.Test05ReviewAPI object at 0x000002274A6DC978>
+client = <django.test.client.Client object at 0x000002274AF72C88>
+admin_client = <rest_framework.test.APIClient object at 0x000002274AF2BC18>
+admin = <CustomUser: TestAdmin>
+
+    @pytest.mark.django_db(transaction=True)
+    def test_04_reviews_check_permission(self, client, admin_client, admin):
+>       reviews, titles, user, moderator = create_reviews(admin_client, admin)
+
+tests\test_05_review.py:319: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\common.py:90: in create_reviews
+    result.append({'id': create_review(admin_client, titles[0]["id"], 'qwerty', 5),
+tests\common.py:82: in create_review
+    response = uclient.post(f'/api/v1/titles/{title_id}/reviews/', data=data)
+venv\lib\site-packages\rest_framework\test.py:296: in post
+    path, data=data, format=format, content_type=content_type, **extra)
+venv\lib\site-packages\rest_framework\test.py:209: in post
+    return self.generic('POST', path, data, content_type, **extra)
+venv\lib\site-packages\rest_framework\test.py:234: in generic
+    method, path, data, content_type, secure, **extra)
+venv\lib\site-packages\django\test\client.py:422: in generic
+    return self.request(**r)
+venv\lib\site-packages\rest_framework\test.py:285: in request
+    return super().request(**kwargs)
+venv\lib\site-packages\rest_framework\test.py:237: in request
+    request = super().request(**kwargs)
+venv\lib\site-packages\django\test\client.py:503: in request
+    raise exc_value
+venv\lib\site-packages\django\core\handlers\exception.py:34: in inner
+    response = get_response(request)
+venv\lib\site-packages\django\core\handlers\base.py:115: in _get_response
+    response = self.process_exception_by_middleware(e, request)
+venv\lib\site-packages\django\core\handlers\base.py:113: in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+venv\lib\site-packages\django\views\decorators\csrf.py:54: in wrapped_view
+    return view_func(*args, **kwargs)
+venv\lib\site-packages\rest_framework\viewsets.py:125: in view
+    return self.dispatch(request, *args, **kwargs)
+venv\lib\site-packages\rest_framework\views.py:509: in dispatch
+    response = self.handle_exception(exc)
+venv\lib\site-packages\rest_framework\views.py:469: in handle_exception
+    self.raise_uncaught_exception(exc)
+venv\lib\site-packages\rest_framework\views.py:480: in raise_uncaught_exception
+    raise exc
+venv\lib\site-packages\rest_framework\views.py:497: in dispatch
+    self.initial(request, *args, **kwargs)
+venv\lib\site-packages\rest_framework\views.py:416: in initial
+    self.check_throttles(request)
+venv\lib\site-packages\rest_framework\views.py:358: in check_throttles
+    for throttle in self.get_throttles():
+venv\lib\site-packages\rest_framework\views.py:284: in get_throttles
+    return [throttle() for throttle in self.throttle_classes]
+venv\lib\site-packages\rest_framework\views.py:284: in <listcomp>
+    return [throttle() for throttle in self.throttle_classes]
+venv\lib\site-packages\rest_framework\throttling.py:70: in __init__
+    self.rate = self.get_rate()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <api.throttling.PostUserRateThrottle object at 0x000002274ADF93C8>
+
+    def get_rate(self):
+        """
+        Determine the string representation of the allowed request rate.
+        """
+        if not getattr(self, 'scope', None):
+            msg = ("You must set either `.scope` or `.rate` for '%s' throttle" %
+                   self.__class__.__name__)
+            raise ImproperlyConfigured(msg)
+    
+        try:
+            return self.THROTTLE_RATES[self.scope]
+        except KeyError:
+            msg = "No default throttle rate set for '%s' scope" % self.scope
+>           raise ImproperlyConfigured(msg)
+E           django.core.exceptions.ImproperlyConfigured: No default throttle rate set for 'post_user' scope
+
+venv\lib\site-packages\rest_framework\throttling.py:95: ImproperlyConfigured
+------------------------------ Captured log call ------------------------------
+ERROR    django.request:log.py:228 Internal Server Error: /api/v1/titles/14/reviews/
+Traceback (most recent call last):
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 92, in get_rate
+    return self.THROTTLE_RATES[self.scope]
+KeyError: 'post_user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 416, in initial
+    self.check_throttles(request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 358, in check_throttles
+    for throttle in self.get_throttles():
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 284, in get_throttles
+    return [throttle() for throttle in self.throttle_classes]
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 284, in <listcomp>
+    return [throttle() for throttle in self.throttle_classes]
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 70, in __init__
+    self.rate = self.get_rate()
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 95, in get_rate
+    raise ImproperlyConfigured(msg)
+django.core.exceptions.ImproperlyConfigured: No default throttle rate set for 'post_user' scope
+__________________ Test06CommentAPI.test_01_comment_not_auth __________________
+
+self = <api.throttling.PostUserRateThrottle object at 0x000002274AE2C160>
+
+    def get_rate(self):
+        """
+        Determine the string representation of the allowed request rate.
+        """
+        if not getattr(self, 'scope', None):
+            msg = ("You must set either `.scope` or `.rate` for '%s' throttle" %
+                   self.__class__.__name__)
+            raise ImproperlyConfigured(msg)
+    
+        try:
+>           return self.THROTTLE_RATES[self.scope]
+E           KeyError: 'post_user'
+
+venv\lib\site-packages\rest_framework\throttling.py:92: KeyError
+
+During handling of the above exception, another exception occurred:
+
+self = <tests.test_06_comment.Test06CommentAPI object at 0x000002274AF72D30>
+client = <django.test.client.Client object at 0x000002274B10D400>
+admin_client = <rest_framework.test.APIClient object at 0x000002274B10D128>
+admin = <CustomUser: TestAdmin>
+
+    @pytest.mark.django_db(transaction=True)
+    def test_01_comment_not_auth(self, client, admin_client, admin):
+>       reviews, titles, _, _ = create_reviews(admin_client, admin)
+
+tests\test_06_comment.py:10: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\common.py:90: in create_reviews
+    result.append({'id': create_review(admin_client, titles[0]["id"], 'qwerty', 5),
+tests\common.py:82: in create_review
+    response = uclient.post(f'/api/v1/titles/{title_id}/reviews/', data=data)
+venv\lib\site-packages\rest_framework\test.py:296: in post
+    path, data=data, format=format, content_type=content_type, **extra)
+venv\lib\site-packages\rest_framework\test.py:209: in post
+    return self.generic('POST', path, data, content_type, **extra)
+venv\lib\site-packages\rest_framework\test.py:234: in generic
+    method, path, data, content_type, secure, **extra)
+venv\lib\site-packages\django\test\client.py:422: in generic
+    return self.request(**r)
+venv\lib\site-packages\rest_framework\test.py:285: in request
+    return super().request(**kwargs)
+venv\lib\site-packages\rest_framework\test.py:237: in request
+    request = super().request(**kwargs)
+venv\lib\site-packages\django\test\client.py:503: in request
+    raise exc_value
+venv\lib\site-packages\django\core\handlers\exception.py:34: in inner
+    response = get_response(request)
+venv\lib\site-packages\django\core\handlers\base.py:115: in _get_response
+    response = self.process_exception_by_middleware(e, request)
+venv\lib\site-packages\django\core\handlers\base.py:113: in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+venv\lib\site-packages\django\views\decorators\csrf.py:54: in wrapped_view
+    return view_func(*args, **kwargs)
+venv\lib\site-packages\rest_framework\viewsets.py:125: in view
+    return self.dispatch(request, *args, **kwargs)
+venv\lib\site-packages\rest_framework\views.py:509: in dispatch
+    response = self.handle_exception(exc)
+venv\lib\site-packages\rest_framework\views.py:469: in handle_exception
+    self.raise_uncaught_exception(exc)
+venv\lib\site-packages\rest_framework\views.py:480: in raise_uncaught_exception
+    raise exc
+venv\lib\site-packages\rest_framework\views.py:497: in dispatch
+    self.initial(request, *args, **kwargs)
+venv\lib\site-packages\rest_framework\views.py:416: in initial
+    self.check_throttles(request)
+venv\lib\site-packages\rest_framework\views.py:358: in check_throttles
+    for throttle in self.get_throttles():
+venv\lib\site-packages\rest_framework\views.py:284: in get_throttles
+    return [throttle() for throttle in self.throttle_classes]
+venv\lib\site-packages\rest_framework\views.py:284: in <listcomp>
+    return [throttle() for throttle in self.throttle_classes]
+venv\lib\site-packages\rest_framework\throttling.py:70: in __init__
+    self.rate = self.get_rate()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <api.throttling.PostUserRateThrottle object at 0x000002274AE2C160>
+
+    def get_rate(self):
+        """
+        Determine the string representation of the allowed request rate.
+        """
+        if not getattr(self, 'scope', None):
+            msg = ("You must set either `.scope` or `.rate` for '%s' throttle" %
+                   self.__class__.__name__)
+            raise ImproperlyConfigured(msg)
+    
+        try:
+            return self.THROTTLE_RATES[self.scope]
+        except KeyError:
+            msg = "No default throttle rate set for '%s' scope" % self.scope
+>           raise ImproperlyConfigured(msg)
+E           django.core.exceptions.ImproperlyConfigured: No default throttle rate set for 'post_user' scope
+
+venv\lib\site-packages\rest_framework\throttling.py:95: ImproperlyConfigured
+------------------------------ Captured log call ------------------------------
+ERROR    django.request:log.py:228 Internal Server Error: /api/v1/titles/16/reviews/
+Traceback (most recent call last):
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 92, in get_rate
+    return self.THROTTLE_RATES[self.scope]
+KeyError: 'post_user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 416, in initial
+    self.check_throttles(request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 358, in check_throttles
+    for throttle in self.get_throttles():
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 284, in get_throttles
+    return [throttle() for throttle in self.throttle_classes]
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 284, in <listcomp>
+    return [throttle() for throttle in self.throttle_classes]
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 70, in __init__
+    self.rate = self.get_rate()
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 95, in get_rate
+    raise ImproperlyConfigured(msg)
+django.core.exceptions.ImproperlyConfigured: No default throttle rate set for 'post_user' scope
+______________________ Test06CommentAPI.test_02_comment _______________________
+
+self = <api.throttling.PostUserRateThrottle object at 0x000002274A7D70B8>
+
+    def get_rate(self):
+        """
+        Determine the string representation of the allowed request rate.
+        """
+        if not getattr(self, 'scope', None):
+            msg = ("You must set either `.scope` or `.rate` for '%s' throttle" %
+                   self.__class__.__name__)
+            raise ImproperlyConfigured(msg)
+    
+        try:
+>           return self.THROTTLE_RATES[self.scope]
+E           KeyError: 'post_user'
+
+venv\lib\site-packages\rest_framework\throttling.py:92: KeyError
+
+During handling of the above exception, another exception occurred:
+
+self = <tests.test_06_comment.Test06CommentAPI object at 0x000002274B10AB00>
+admin_client = <rest_framework.test.APIClient object at 0x000002274A9CFE48>
+admin = <CustomUser: TestAdmin>
+
+    @pytest.mark.django_db(transaction=True)
+    def test_02_comment(self, admin_client, admin):
+>       reviews, titles, user, moderator = create_reviews(admin_client, admin)
+
+tests\test_06_comment.py:32: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\common.py:90: in create_reviews
+    result.append({'id': create_review(admin_client, titles[0]["id"], 'qwerty', 5),
+tests\common.py:82: in create_review
+    response = uclient.post(f'/api/v1/titles/{title_id}/reviews/', data=data)
+venv\lib\site-packages\rest_framework\test.py:296: in post
+    path, data=data, format=format, content_type=content_type, **extra)
+venv\lib\site-packages\rest_framework\test.py:209: in post
+    return self.generic('POST', path, data, content_type, **extra)
+venv\lib\site-packages\rest_framework\test.py:234: in generic
+    method, path, data, content_type, secure, **extra)
+venv\lib\site-packages\django\test\client.py:422: in generic
+    return self.request(**r)
+venv\lib\site-packages\rest_framework\test.py:285: in request
+    return super().request(**kwargs)
+venv\lib\site-packages\rest_framework\test.py:237: in request
+    request = super().request(**kwargs)
+venv\lib\site-packages\django\test\client.py:503: in request
+    raise exc_value
+venv\lib\site-packages\django\core\handlers\exception.py:34: in inner
+    response = get_response(request)
+venv\lib\site-packages\django\core\handlers\base.py:115: in _get_response
+    response = self.process_exception_by_middleware(e, request)
+venv\lib\site-packages\django\core\handlers\base.py:113: in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+venv\lib\site-packages\django\views\decorators\csrf.py:54: in wrapped_view
+    return view_func(*args, **kwargs)
+venv\lib\site-packages\rest_framework\viewsets.py:125: in view
+    return self.dispatch(request, *args, **kwargs)
+venv\lib\site-packages\rest_framework\views.py:509: in dispatch
+    response = self.handle_exception(exc)
+venv\lib\site-packages\rest_framework\views.py:469: in handle_exception
+    self.raise_uncaught_exception(exc)
+venv\lib\site-packages\rest_framework\views.py:480: in raise_uncaught_exception
+    raise exc
+venv\lib\site-packages\rest_framework\views.py:497: in dispatch
+    self.initial(request, *args, **kwargs)
+venv\lib\site-packages\rest_framework\views.py:416: in initial
+    self.check_throttles(request)
+venv\lib\site-packages\rest_framework\views.py:358: in check_throttles
+    for throttle in self.get_throttles():
+venv\lib\site-packages\rest_framework\views.py:284: in get_throttles
+    return [throttle() for throttle in self.throttle_classes]
+venv\lib\site-packages\rest_framework\views.py:284: in <listcomp>
+    return [throttle() for throttle in self.throttle_classes]
+venv\lib\site-packages\rest_framework\throttling.py:70: in __init__
+    self.rate = self.get_rate()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <api.throttling.PostUserRateThrottle object at 0x000002274A7D70B8>
+
+    def get_rate(self):
+        """
+        Determine the string representation of the allowed request rate.
+        """
+        if not getattr(self, 'scope', None):
+            msg = ("You must set either `.scope` or `.rate` for '%s' throttle" %
+                   self.__class__.__name__)
+            raise ImproperlyConfigured(msg)
+    
+        try:
+            return self.THROTTLE_RATES[self.scope]
+        except KeyError:
+            msg = "No default throttle rate set for '%s' scope" % self.scope
+>           raise ImproperlyConfigured(msg)
+E           django.core.exceptions.ImproperlyConfigured: No default throttle rate set for 'post_user' scope
+
+venv\lib\site-packages\rest_framework\throttling.py:95: ImproperlyConfigured
+------------------------------ Captured log call ------------------------------
+ERROR    django.request:log.py:228 Internal Server Error: /api/v1/titles/18/reviews/
+Traceback (most recent call last):
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 92, in get_rate
+    return self.THROTTLE_RATES[self.scope]
+KeyError: 'post_user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 416, in initial
+    self.check_throttles(request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 358, in check_throttles
+    for throttle in self.get_throttles():
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 284, in get_throttles
+    return [throttle() for throttle in self.throttle_classes]
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 284, in <listcomp>
+    return [throttle() for throttle in self.throttle_classes]
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 70, in __init__
+    self.rate = self.get_rate()
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 95, in get_rate
+    raise ImproperlyConfigured(msg)
+django.core.exceptions.ImproperlyConfigured: No default throttle rate set for 'post_user' scope
+___________________ Test06CommentAPI.test_03_review_detail ____________________
+
+self = <api.throttling.PostUserRateThrottle object at 0x000002274A9D50F0>
+
+    def get_rate(self):
+        """
+        Determine the string representation of the allowed request rate.
+        """
+        if not getattr(self, 'scope', None):
+            msg = ("You must set either `.scope` or `.rate` for '%s' throttle" %
+                   self.__class__.__name__)
+            raise ImproperlyConfigured(msg)
+    
+        try:
+>           return self.THROTTLE_RATES[self.scope]
+E           KeyError: 'post_user'
+
+venv\lib\site-packages\rest_framework\throttling.py:92: KeyError
+
+During handling of the above exception, another exception occurred:
+
+self = <tests.test_06_comment.Test06CommentAPI object at 0x000002274B10A240>
+client = <django.test.client.Client object at 0x000002274AEC7518>
+admin_client = <rest_framework.test.APIClient object at 0x000002274AEC7208>
+admin = <CustomUser: TestAdmin>
+
+    @pytest.mark.django_db(transaction=True)
+    def test_03_review_detail(self, client, admin_client, admin):
+>       comments, reviews, titles, user, moderator = create_comments(admin_client, admin)
+
+tests\test_06_comment.py:132: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\common.py:105: in create_comments
+    reviews, titles, user, moderator = create_reviews(admin_client, admin)
+tests\common.py:90: in create_reviews
+    result.append({'id': create_review(admin_client, titles[0]["id"], 'qwerty', 5),
+tests\common.py:82: in create_review
+    response = uclient.post(f'/api/v1/titles/{title_id}/reviews/', data=data)
+venv\lib\site-packages\rest_framework\test.py:296: in post
+    path, data=data, format=format, content_type=content_type, **extra)
+venv\lib\site-packages\rest_framework\test.py:209: in post
+    return self.generic('POST', path, data, content_type, **extra)
+venv\lib\site-packages\rest_framework\test.py:234: in generic
+    method, path, data, content_type, secure, **extra)
+venv\lib\site-packages\django\test\client.py:422: in generic
+    return self.request(**r)
+venv\lib\site-packages\rest_framework\test.py:285: in request
+    return super().request(**kwargs)
+venv\lib\site-packages\rest_framework\test.py:237: in request
+    request = super().request(**kwargs)
+venv\lib\site-packages\django\test\client.py:503: in request
+    raise exc_value
+venv\lib\site-packages\django\core\handlers\exception.py:34: in inner
+    response = get_response(request)
+venv\lib\site-packages\django\core\handlers\base.py:115: in _get_response
+    response = self.process_exception_by_middleware(e, request)
+venv\lib\site-packages\django\core\handlers\base.py:113: in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+venv\lib\site-packages\django\views\decorators\csrf.py:54: in wrapped_view
+    return view_func(*args, **kwargs)
+venv\lib\site-packages\rest_framework\viewsets.py:125: in view
+    return self.dispatch(request, *args, **kwargs)
+venv\lib\site-packages\rest_framework\views.py:509: in dispatch
+    response = self.handle_exception(exc)
+venv\lib\site-packages\rest_framework\views.py:469: in handle_exception
+    self.raise_uncaught_exception(exc)
+venv\lib\site-packages\rest_framework\views.py:480: in raise_uncaught_exception
+    raise exc
+venv\lib\site-packages\rest_framework\views.py:497: in dispatch
+    self.initial(request, *args, **kwargs)
+venv\lib\site-packages\rest_framework\views.py:416: in initial
+    self.check_throttles(request)
+venv\lib\site-packages\rest_framework\views.py:358: in check_throttles
+    for throttle in self.get_throttles():
+venv\lib\site-packages\rest_framework\views.py:284: in get_throttles
+    return [throttle() for throttle in self.throttle_classes]
+venv\lib\site-packages\rest_framework\views.py:284: in <listcomp>
+    return [throttle() for throttle in self.throttle_classes]
+venv\lib\site-packages\rest_framework\throttling.py:70: in __init__
+    self.rate = self.get_rate()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <api.throttling.PostUserRateThrottle object at 0x000002274A9D50F0>
+
+    def get_rate(self):
+        """
+        Determine the string representation of the allowed request rate.
+        """
+        if not getattr(self, 'scope', None):
+            msg = ("You must set either `.scope` or `.rate` for '%s' throttle" %
+                   self.__class__.__name__)
+            raise ImproperlyConfigured(msg)
+    
+        try:
+            return self.THROTTLE_RATES[self.scope]
+        except KeyError:
+            msg = "No default throttle rate set for '%s' scope" % self.scope
+>           raise ImproperlyConfigured(msg)
+E           django.core.exceptions.ImproperlyConfigured: No default throttle rate set for 'post_user' scope
+
+venv\lib\site-packages\rest_framework\throttling.py:95: ImproperlyConfigured
+------------------------------ Captured log call ------------------------------
+ERROR    django.request:log.py:228 Internal Server Error: /api/v1/titles/20/reviews/
+Traceback (most recent call last):
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 92, in get_rate
+    return self.THROTTLE_RATES[self.scope]
+KeyError: 'post_user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 416, in initial
+    self.check_throttles(request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 358, in check_throttles
+    for throttle in self.get_throttles():
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 284, in get_throttles
+    return [throttle() for throttle in self.throttle_classes]
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 284, in <listcomp>
+    return [throttle() for throttle in self.throttle_classes]
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 70, in __init__
+    self.rate = self.get_rate()
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 95, in get_rate
+    raise ImproperlyConfigured(msg)
+django.core.exceptions.ImproperlyConfigured: No default throttle rate set for 'post_user' scope
+______________ Test06CommentAPI.test_04_comment_check_permission ______________
+
+self = <api.throttling.PostUserRateThrottle object at 0x000002274B1566A0>
+
+    def get_rate(self):
+        """
+        Determine the string representation of the allowed request rate.
+        """
+        if not getattr(self, 'scope', None):
+            msg = ("You must set either `.scope` or `.rate` for '%s' throttle" %
+                   self.__class__.__name__)
+            raise ImproperlyConfigured(msg)
+    
+        try:
+>           return self.THROTTLE_RATES[self.scope]
+E           KeyError: 'post_user'
+
+venv\lib\site-packages\rest_framework\throttling.py:92: KeyError
+
+During handling of the above exception, another exception occurred:
+
+self = <tests.test_06_comment.Test06CommentAPI object at 0x000002274AEC7CC0>
+client = <django.test.client.Client object at 0x000002274B0F8C50>
+admin_client = <rest_framework.test.APIClient object at 0x000002274B0F8CC0>
+admin = <CustomUser: TestAdmin>
+
+    @pytest.mark.django_db(transaction=True)
+    def test_04_comment_check_permission(self, client, admin_client, admin):
+>       comments, reviews, titles, user, moderator = create_comments(admin_client, admin)
+
+tests\test_06_comment.py:228: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\common.py:105: in create_comments
+    reviews, titles, user, moderator = create_reviews(admin_client, admin)
+tests\common.py:90: in create_reviews
+    result.append({'id': create_review(admin_client, titles[0]["id"], 'qwerty', 5),
+tests\common.py:82: in create_review
+    response = uclient.post(f'/api/v1/titles/{title_id}/reviews/', data=data)
+venv\lib\site-packages\rest_framework\test.py:296: in post
+    path, data=data, format=format, content_type=content_type, **extra)
+venv\lib\site-packages\rest_framework\test.py:209: in post
+    return self.generic('POST', path, data, content_type, **extra)
+venv\lib\site-packages\rest_framework\test.py:234: in generic
+    method, path, data, content_type, secure, **extra)
+venv\lib\site-packages\django\test\client.py:422: in generic
+    return self.request(**r)
+venv\lib\site-packages\rest_framework\test.py:285: in request
+    return super().request(**kwargs)
+venv\lib\site-packages\rest_framework\test.py:237: in request
+    request = super().request(**kwargs)
+venv\lib\site-packages\django\test\client.py:503: in request
+    raise exc_value
+venv\lib\site-packages\django\core\handlers\exception.py:34: in inner
+    response = get_response(request)
+venv\lib\site-packages\django\core\handlers\base.py:115: in _get_response
+    response = self.process_exception_by_middleware(e, request)
+venv\lib\site-packages\django\core\handlers\base.py:113: in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+venv\lib\site-packages\django\views\decorators\csrf.py:54: in wrapped_view
+    return view_func(*args, **kwargs)
+venv\lib\site-packages\rest_framework\viewsets.py:125: in view
+    return self.dispatch(request, *args, **kwargs)
+venv\lib\site-packages\rest_framework\views.py:509: in dispatch
+    response = self.handle_exception(exc)
+venv\lib\site-packages\rest_framework\views.py:469: in handle_exception
+    self.raise_uncaught_exception(exc)
+venv\lib\site-packages\rest_framework\views.py:480: in raise_uncaught_exception
+    raise exc
+venv\lib\site-packages\rest_framework\views.py:497: in dispatch
+    self.initial(request, *args, **kwargs)
+venv\lib\site-packages\rest_framework\views.py:416: in initial
+    self.check_throttles(request)
+venv\lib\site-packages\rest_framework\views.py:358: in check_throttles
+    for throttle in self.get_throttles():
+venv\lib\site-packages\rest_framework\views.py:284: in get_throttles
+    return [throttle() for throttle in self.throttle_classes]
+venv\lib\site-packages\rest_framework\views.py:284: in <listcomp>
+    return [throttle() for throttle in self.throttle_classes]
+venv\lib\site-packages\rest_framework\throttling.py:70: in __init__
+    self.rate = self.get_rate()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <api.throttling.PostUserRateThrottle object at 0x000002274B1566A0>
+
+    def get_rate(self):
+        """
+        Determine the string representation of the allowed request rate.
+        """
+        if not getattr(self, 'scope', None):
+            msg = ("You must set either `.scope` or `.rate` for '%s' throttle" %
+                   self.__class__.__name__)
+            raise ImproperlyConfigured(msg)
+    
+        try:
+            return self.THROTTLE_RATES[self.scope]
+        except KeyError:
+            msg = "No default throttle rate set for '%s' scope" % self.scope
+>           raise ImproperlyConfigured(msg)
+E           django.core.exceptions.ImproperlyConfigured: No default throttle rate set for 'post_user' scope
+
+venv\lib\site-packages\rest_framework\throttling.py:95: ImproperlyConfigured
+------------------------------ Captured log call ------------------------------
+ERROR    django.request:log.py:228 Internal Server Error: /api/v1/titles/22/reviews/
+Traceback (most recent call last):
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 92, in get_rate
+    return self.THROTTLE_RATES[self.scope]
+KeyError: 'post_user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 416, in initial
+    self.check_throttles(request)
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 358, in check_throttles
+    for throttle in self.get_throttles():
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 284, in get_throttles
+    return [throttle() for throttle in self.throttle_classes]
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\views.py", line 284, in <listcomp>
+    return [throttle() for throttle in self.throttle_classes]
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 70, in __init__
+    self.rate = self.get_rate()
+  File "c:\dev\api_yamdb\venv\lib\site-packages\rest_framework\throttling.py", line 95, in get_rate
+    raise ImproperlyConfigured(msg)
+django.core.exceptions.ImproperlyConfigured: No default throttle rate set for 'post_user' scope
+-------------------------- Captured stderr teardown ---------------------------
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+============================== warnings summary ===============================
+venv\lib\site-packages\pkg_resources\_vendor\pyparsing.py:943
+  c:\dev\api_yamdb\venv\lib\site-packages\pkg_resources\_vendor\pyparsing.py:943: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+    collections.MutableMapping.register(ParseResults)
+
+venv\lib\site-packages\pkg_resources\_vendor\pyparsing.py:3226
+  c:\dev\api_yamdb\venv\lib\site-packages\pkg_resources\_vendor\pyparsing.py:3226: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+    elif isinstance( exprs, collections.Iterable ):
+
+-- Docs: https://docs.pytest.org/en/stable/warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_00_user_registration.py::Test00UserRegistration::test_00_obtain_jwt_token_invalid_data
+FAILED tests/test_01_users.py::Test01UserAPI::test_05_01_users_post_admin - A...
+FAILED tests/test_05_review.py::Test05ReviewAPI::test_01_review_not_auth - dj...
+FAILED tests/test_05_review.py::Test05ReviewAPI::test_02_review_admin - djang...
+FAILED tests/test_05_review.py::Test05ReviewAPI::test_03_review_detail - djan...
+FAILED tests/test_05_review.py::Test05ReviewAPI::test_04_reviews_check_permission
+FAILED tests/test_06_comment.py::Test06CommentAPI::test_01_comment_not_auth
+FAILED tests/test_06_comment.py::Test06CommentAPI::test_02_comment - django.c...
+FAILED tests/test_06_comment.py::Test06CommentAPI::test_03_review_detail - dj...
+FAILED tests/test_06_comment.py::Test06CommentAPI::test_04_comment_check_permission
+================= 10 failed, 43 passed, 2 warnings in 18.04s ==================

@@ -24,7 +24,7 @@ class GenreSerializer(serializers.ModelSerializer):
 
 class TitleSerializer(serializers.ModelSerializer):
     genre = GenreSerializer(read_only=True, many=True)
-    categories = CategoriesSerializer(read_only=True)
+    category = CategoriesSerializer(read_only=True)
     rating = serializers.SerializerMethodField()
 
     def get_rating(self, obj):
@@ -35,7 +35,7 @@ class TitleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Title
         fields = ('id', 'name', 'year', 'description',
-                  'genre', 'categories', 'rating')
+                  'genre', 'category', 'rating')
         read_only_fields = (
             'id',
             'name',
@@ -47,7 +47,7 @@ class TitleSerializer(serializers.ModelSerializer):
 
 
 class TitleCreateSerializer(serializers.ModelSerializer):
-    categories = serializers.SlugRelatedField(
+    category = serializers.SlugRelatedField(
         slug_field='slug',
         queryset=Categories.objects.all()
     )
