@@ -4,6 +4,7 @@ from django.db.models import Avg
 from rest_framework import serializers, status
 from rest_framework.relations import SlugRelatedField
 from reviews.models import Categories, Comment, Genre, Review, Title
+from users.models import CustomUser
 
 RANK = settings.RANKS
 
@@ -111,3 +112,48 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ['text', 'author', 'pub_date']
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CustomUser
+        fields = (
+            'username', 'email', 'first_name', 'last_name', 'bio', 'role')
+
+
+class TokenSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=150)
+    confirmation_code = serializers.CharField(max_length=254)
+
+    def validate(self, data):
+        username = data.get('username')
+        confirmation_code = data.get('confirmation_code')
+        if username is None:
+            raise serializers.ValidationError('Отсутствует имя пользователя')
+        if confirmation_code is None:
+            raise serializers.ValidationError('Отсутствует код подтверждения')
+        return data
+
+
+class SignUpSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=150)
+    email = serializers.EmailField()
+
+    def validate_username(self, name):
+        if name == 'me':
+            raise serializers.ValidationError('Недопустимое имя')
+        return name
+
+    def validate(self, data):
+        username = data.get('username')
+        email = data.get('email')
+        if CustomUser.objects.filter(username=username).exists():
+            raise serializers.ValidationError('Username занят')
+        if CustomUser.objects.filter(email=email).exists():
+            raise serializers.ValidationError('Почтовый адрес занят')
+        return data
+
+
+class AccountSerializer(UserSerializer):
+    role = serializers.CharField(read_only=True)
