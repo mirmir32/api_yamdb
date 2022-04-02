@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt',
     'django_filters',
     'users.apps.UsersConfig',
     'api.apps.ApiConfig',
@@ -138,3 +139,18 @@ RANKS = [
         ('9', '9'),
         ('10', '10'),
     ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
