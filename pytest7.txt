@@ -1,0 +1,293 @@
+============================= test session starts =============================
+platform win32 -- Python 3.7.9, pytest-6.2.4, py-1.11.0, pluggy-0.13.1 -- c:\dev\api_yamdb\venv\scripts\python.exe
+django: settings: api_yamdb.settings (from ini)
+rootdir: C:\dev\api_yamdb, configfile: pytest.ini, testpaths: tests/
+plugins: django-4.4.0, pythonpath-0.7.3
+collecting ... collected 53 items
+
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_nodata_signup PASSED [  1%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_invalid_data_signup PASSED [  3%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_valid_data_user_signup PASSED [  5%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_valid_data_admin_create_user PASSED [  7%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_obtain_jwt_token_invalid_data PASSED [  9%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_registration_me_username_restricted PASSED [ 11%]
+tests/test_00_user_registration.py::Test00UserRegistration::test_00_registration_same_email_restricted PASSED [ 13%]
+tests/test_01_users.py::Test01UserAPI::test_01_users_not_authenticated PASSED [ 15%]
+tests/test_01_users.py::Test01UserAPI::test_02_users_username_not_authenticated PASSED [ 16%]
+tests/test_01_users.py::Test01UserAPI::test_03_users_me_not_authenticated PASSED [ 18%]
+tests/test_01_users.py::Test01UserAPI::test_04_users_get_admin PASSED    [ 20%]
+tests/test_01_users.py::Test01UserAPI::test_04_02_users_get_search PASSED [ 22%]
+tests/test_01_users.py::Test01UserAPI::test_04_01_users_get_admin_only PASSED [ 24%]
+tests/test_01_users.py::Test01UserAPI::test_05_01_users_post_admin PASSED [ 26%]
+tests/test_01_users.py::Test01UserAPI::test_05_02_users_post_user_superuser PASSED [ 28%]
+tests/test_01_users.py::Test01UserAPI::test_06_users_username_get_admin PASSED [ 30%]
+tests/test_01_users.py::Test01UserAPI::test_06_users_username_get_not_admin PASSED [ 32%]
+tests/test_01_users.py::Test01UserAPI::test_07_01_users_username_patch_admin PASSED [ 33%]
+tests/test_01_users.py::Test01UserAPI::test_07_02_users_username_patch_moderator PASSED [ 35%]
+tests/test_01_users.py::Test01UserAPI::test_07_03_users_username_patch_user PASSED [ 37%]
+tests/test_01_users.py::Test01UserAPI::test_07_05_users_username_put_user_restricted PASSED [ 39%]
+tests/test_01_users.py::Test01UserAPI::test_08_01_users_username_delete_admin PASSED [ 41%]
+tests/test_01_users.py::Test01UserAPI::test_08_02_users_username_delete_moderator PASSED [ 43%]
+tests/test_01_users.py::Test01UserAPI::test_08_03_users_username_delete_user PASSED [ 45%]
+tests/test_01_users.py::Test01UserAPI::test_08_04_users_username_delete_superuser PASSED [ 47%]
+tests/test_01_users.py::Test01UserAPI::test_09_users_check_permissions PASSED [ 49%]
+tests/test_01_users.py::Test01UserAPI::test_10_users_me_get_admin PASSED [ 50%]
+tests/test_01_users.py::Test01UserAPI::test_11_01_users_me_patch_admin PASSED [ 52%]
+tests/test_01_users.py::Test01UserAPI::test_11_02_users_me_patch_user PASSED [ 54%]
+tests/test_02_category.py::Test02CategoryAPI::test_01_category_not_auth PASSED [ 56%]
+tests/test_02_category.py::Test02CategoryAPI::test_02_category_admin PASSED [ 58%]
+tests/test_02_category.py::Test02CategoryAPI::test_03_category_delete_admin PASSED [ 60%]
+tests/test_02_category.py::Test02CategoryAPI::test_04_category_check_permission_admin PASSED [ 62%]
+tests/test_02_category.py::Test02CategoryAPI::test_05_category_create_user PASSED [ 64%]
+tests/test_02_category.py::Test02CategoryAPI::test_06_category_create_moderator PASSED [ 66%]
+tests/test_03_genre.py::Test03GenreAPI::test_01_genre_not_auth PASSED    [ 67%]
+tests/test_03_genre.py::Test03GenreAPI::test_02_genre PASSED             [ 69%]
+tests/test_03_genre.py::Test03GenreAPI::test_03_genres_delete PASSED     [ 71%]
+tests/test_03_genre.py::Test03GenreAPI::test_04_genres_check_permission PASSED [ 73%]
+tests/test_03_genre.py::Test03GenreAPI::test_05_genre_create_user PASSED [ 75%]
+tests/test_03_genre.py::Test03GenreAPI::test_06_genre_create_moderator PASSED [ 77%]
+tests/test_04_title.py::Test04TitleAPI::test_01_title_not_auth PASSED    [ 79%]
+tests/test_04_title.py::Test04TitleAPI::test_02_title_admin PASSED       [ 81%]
+tests/test_04_title.py::Test04TitleAPI::test_03_titles_detail PASSED     [ 83%]
+tests/test_04_title.py::Test04TitleAPI::test_04_titles_check_permission PASSED [ 84%]
+tests/test_05_review.py::Test05ReviewAPI::test_01_review_not_auth PASSED [ 86%]
+tests/test_05_review.py::Test05ReviewAPI::test_02_review_admin FAILED    [ 88%]
+tests/test_05_review.py::Test05ReviewAPI::test_03_review_detail FAILED   [ 90%]
+tests/test_05_review.py::Test05ReviewAPI::test_04_reviews_check_permission FAILED [ 92%]
+tests/test_06_comment.py::Test06CommentAPI::test_01_comment_not_auth FAILED [ 94%]
+tests/test_06_comment.py::Test06CommentAPI::test_02_comment FAILED       [ 96%]
+tests/test_06_comment.py::Test06CommentAPI::test_03_review_detail FAILED [ 98%]
+tests/test_06_comment.py::Test06CommentAPI::test_04_comment_check_permission FAILED [100%]
+
+================================== FAILURES ===================================
+____________________ Test05ReviewAPI.test_02_review_admin _____________________
+
+self = <tests.test_05_review.Test05ReviewAPI object at 0x00000245F1F75CC8>
+admin_client = <rest_framework.test.APIClient object at 0x00000245F1E99148>
+admin = <CustomUser: TestAdmin>
+
+    @pytest.mark.django_db(transaction=True)
+    def test_02_review_admin(self, admin_client, admin):
+        titles, _, _ = create_titles(admin_client)
+        user, moderator = create_users_api(admin_client)
+        client_user = auth_client(user)
+        client_moderator = auth_client(moderator)
+        data = {}
+        response = admin_client.post(f'/api/v1/titles/{titles[0]["id"]}/reviews/', data=data)
+        assert response.status_code == 400, (
+            'ѕроверьте, что при POST запросе `/api/v1/titles/{title_id}/reviews/` '
+            'с не правильными данными возвращает статус 400'
+        )
+>       self.create_review(admin_client, titles[0]["id"], 'qwerty', 5)
+
+tests\test_05_review.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <tests.test_05_review.Test05ReviewAPI object at 0x00000245F1F75CC8>
+client_user = <rest_framework.test.APIClient object at 0x00000245F1E99148>
+title_id = 10, text = 'qwerty', score = 5
+
+    def create_review(self, client_user, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = client_user.post(f'/api/v1/titles/{title_id}/reviews/', data=data)
+>       assert response.status_code == 201, (
+            'ѕроверьте, что при POST запросе `/api/v1/titles/{title_id}/reviews/` '
+            'с правильными данными возвращает статус 201, api доступен дл€ любого аутентифицированного пользовател€'
+        )
+E       AssertionError: ѕроверьте, что при POST запросе `/api/v1/titles/{title_id}/reviews/` с правильными данными возвращает статус 201, api доступен дл€ любого аутентифицированного пользовател€
+E       assert 400 == 201
+E         +400
+E         -201
+
+tests\test_05_review.py:24: AssertionError
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:228 Bad Request: /api/v1/titles/10/reviews/
+WARNING  django.request:log.py:228 Bad Request: /api/v1/titles/10/reviews/
+____________________ Test05ReviewAPI.test_03_review_detail ____________________
+
+self = <tests.test_05_review.Test05ReviewAPI object at 0x00000245F1D8CD48>
+client = <django.test.client.Client object at 0x00000245F1EDF048>
+admin_client = <rest_framework.test.APIClient object at 0x00000245F1EDFDC8>
+admin = <CustomUser: TestAdmin>
+
+    @pytest.mark.django_db(transaction=True)
+    def test_03_review_detail(self, client, admin_client, admin):
+>       reviews, titles, user, moderator = create_reviews(admin_client, admin)
+
+tests\test_05_review.py:202: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\common.py:90: in create_reviews
+    result.append({'id': create_review(admin_client, titles[0]["id"], 'qwerty', 5),
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+uclient = <rest_framework.test.APIClient object at 0x00000245F1EDFDC8>
+title_id = 12, text = 'qwerty', score = 5
+
+    def create_review(uclient, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = uclient.post(f'/api/v1/titles/{title_id}/reviews/', data=data)
+>       return response.json()['id']
+E       KeyError: 'id'
+
+tests\common.py:83: KeyError
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:228 Bad Request: /api/v1/titles/12/reviews/
+______________ Test05ReviewAPI.test_04_reviews_check_permission _______________
+
+self = <tests.test_05_review.Test05ReviewAPI object at 0x00000245F1E5EE48>
+client = <django.test.client.Client object at 0x00000245F1E76FC8>
+admin_client = <rest_framework.test.APIClient object at 0x00000245F1E9D508>
+admin = <CustomUser: TestAdmin>
+
+    @pytest.mark.django_db(transaction=True)
+    def test_04_reviews_check_permission(self, client, admin_client, admin):
+>       reviews, titles, user, moderator = create_reviews(admin_client, admin)
+
+tests\test_05_review.py:319: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\common.py:90: in create_reviews
+    result.append({'id': create_review(admin_client, titles[0]["id"], 'qwerty', 5),
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+uclient = <rest_framework.test.APIClient object at 0x00000245F1E9D508>
+title_id = 14, text = 'qwerty', score = 5
+
+    def create_review(uclient, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = uclient.post(f'/api/v1/titles/{title_id}/reviews/', data=data)
+>       return response.json()['id']
+E       KeyError: 'id'
+
+tests\common.py:83: KeyError
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:228 Bad Request: /api/v1/titles/14/reviews/
+__________________ Test06CommentAPI.test_01_comment_not_auth __________________
+
+self = <tests.test_06_comment.Test06CommentAPI object at 0x00000245F1E66048>
+client = <django.test.client.Client object at 0x00000245F1EC0388>
+admin_client = <rest_framework.test.APIClient object at 0x00000245F1E76C48>
+admin = <CustomUser: TestAdmin>
+
+    @pytest.mark.django_db(transaction=True)
+    def test_01_comment_not_auth(self, client, admin_client, admin):
+>       reviews, titles, _, _ = create_reviews(admin_client, admin)
+
+tests\test_06_comment.py:10: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\common.py:90: in create_reviews
+    result.append({'id': create_review(admin_client, titles[0]["id"], 'qwerty', 5),
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+uclient = <rest_framework.test.APIClient object at 0x00000245F1E76C48>
+title_id = 16, text = 'qwerty', score = 5
+
+    def create_review(uclient, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = uclient.post(f'/api/v1/titles/{title_id}/reviews/', data=data)
+>       return response.json()['id']
+E       KeyError: 'id'
+
+tests\common.py:83: KeyError
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:228 Bad Request: /api/v1/titles/16/reviews/
+______________________ Test06CommentAPI.test_02_comment _______________________
+
+self = <tests.test_06_comment.Test06CommentAPI object at 0x00000245F19A2FC8>
+admin_client = <rest_framework.test.APIClient object at 0x00000245F1DD74C8>
+admin = <CustomUser: TestAdmin>
+
+    @pytest.mark.django_db(transaction=True)
+    def test_02_comment(self, admin_client, admin):
+>       reviews, titles, user, moderator = create_reviews(admin_client, admin)
+
+tests\test_06_comment.py:32: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\common.py:90: in create_reviews
+    result.append({'id': create_review(admin_client, titles[0]["id"], 'qwerty', 5),
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+uclient = <rest_framework.test.APIClient object at 0x00000245F1DD74C8>
+title_id = 18, text = 'qwerty', score = 5
+
+    def create_review(uclient, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = uclient.post(f'/api/v1/titles/{title_id}/reviews/', data=data)
+>       return response.json()['id']
+E       KeyError: 'id'
+
+tests\common.py:83: KeyError
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:228 Bad Request: /api/v1/titles/18/reviews/
+___________________ Test06CommentAPI.test_03_review_detail ____________________
+
+self = <tests.test_06_comment.Test06CommentAPI object at 0x00000245F1D82388>
+client = <django.test.client.Client object at 0x00000245F1D89588>
+admin_client = <rest_framework.test.APIClient object at 0x00000245F1E028C8>
+admin = <CustomUser: TestAdmin>
+
+    @pytest.mark.django_db(transaction=True)
+    def test_03_review_detail(self, client, admin_client, admin):
+>       comments, reviews, titles, user, moderator = create_comments(admin_client, admin)
+
+tests\test_06_comment.py:132: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\common.py:105: in create_comments
+    reviews, titles, user, moderator = create_reviews(admin_client, admin)
+tests\common.py:90: in create_reviews
+    result.append({'id': create_review(admin_client, titles[0]["id"], 'qwerty', 5),
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+uclient = <rest_framework.test.APIClient object at 0x00000245F1E028C8>
+title_id = 20, text = 'qwerty', score = 5
+
+    def create_review(uclient, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = uclient.post(f'/api/v1/titles/{title_id}/reviews/', data=data)
+>       return response.json()['id']
+E       KeyError: 'id'
+
+tests\common.py:83: KeyError
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:228 Bad Request: /api/v1/titles/20/reviews/
+______________ Test06CommentAPI.test_04_comment_check_permission ______________
+
+self = <tests.test_06_comment.Test06CommentAPI object at 0x00000245F1E3D8C8>
+client = <django.test.client.Client object at 0x00000245F1DEDEC8>
+admin_client = <rest_framework.test.APIClient object at 0x00000245F1D68F48>
+admin = <CustomUser: TestAdmin>
+
+    @pytest.mark.django_db(transaction=True)
+    def test_04_comment_check_permission(self, client, admin_client, admin):
+>       comments, reviews, titles, user, moderator = create_comments(admin_client, admin)
+
+tests\test_06_comment.py:228: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\common.py:105: in create_comments
+    reviews, titles, user, moderator = create_reviews(admin_client, admin)
+tests\common.py:90: in create_reviews
+    result.append({'id': create_review(admin_client, titles[0]["id"], 'qwerty', 5),
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+uclient = <rest_framework.test.APIClient object at 0x00000245F1D68F48>
+title_id = 22, text = 'qwerty', score = 5
+
+    def create_review(uclient, title_id, text, score):
+        data = {'text': text, 'score': score}
+        response = uclient.post(f'/api/v1/titles/{title_id}/reviews/', data=data)
+>       return response.json()['id']
+E       KeyError: 'id'
+
+tests\common.py:83: KeyError
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:228 Bad Request: /api/v1/titles/22/reviews/
+-------------------------- Captured stderr teardown ---------------------------
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+=========================== short test summary info ===========================
+FAILED tests/test_05_review.py::Test05ReviewAPI::test_02_review_admin - Asser...
+FAILED tests/test_05_review.py::Test05ReviewAPI::test_03_review_detail - KeyE...
+FAILED tests/test_05_review.py::Test05ReviewAPI::test_04_reviews_check_permission
+FAILED tests/test_06_comment.py::Test06CommentAPI::test_01_comment_not_auth
+FAILED tests/test_06_comment.py::Test06CommentAPI::test_02_comment - KeyError...
+FAILED tests/test_06_comment.py::Test06CommentAPI::test_03_review_detail - Ke...
+FAILED tests/test_06_comment.py::Test06CommentAPI::test_04_comment_check_permission
+======================== 7 failed, 46 passed in 4.45s =========================

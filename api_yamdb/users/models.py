@@ -1,5 +1,5 @@
 from django.contrib.auth.models import AbstractUser
-from django.db.models import CharField, TextField
+from django.db.models import CharField, TextField, EmailField
 
 
 class CustomUser(AbstractUser):
@@ -12,6 +12,7 @@ class CustomUser(AbstractUser):
         (MODERATOR, MODERATOR),
         (ADMIN, ADMIN),
     )
+    email = EmailField(unique=True, blank=False)
     bio = TextField(
         blank=True,
         verbose_name='Информация о пользователе'
@@ -22,6 +23,7 @@ class CustomUser(AbstractUser):
         default=USER,
         verbose_name='Роль'
     )
+    confirmation_code = CharField(max_length=256, default='')
 
     @property
     def is_user(self):
