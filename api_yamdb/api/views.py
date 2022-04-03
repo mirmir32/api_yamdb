@@ -1,6 +1,7 @@
+from uuid import uuid4
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
-from django.contrib.auth.tokens import default_token_generator
+
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import filters, viewsets, status
@@ -33,8 +34,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     pagination_class = PageNumberPagination
-    permission_classes = [
-        IsObjectOwnerModeratorAdminOrReadOnly | IsAuthenticatedOrReadOnly]
+    permission_classes = (IsAuthenticatedOrReadOnly, IsObjectOwnerModeratorAdminOrReadOnly)
     throttle_classes = (PostUserRateThrottle,)
 
     def get_queryset(self):
@@ -154,6 +154,9 @@ def token(request):
     serializer.is_valid(raise_exception=True)
     username = serializer.validated_data['username']
     user = get_object_or_404(CustomUser, username=username)
+    confirmation_code = serializer.validated_data['confirmation_code']
+    if confirmation_code != user.confirmation_code:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
     refresh = RefreshToken.for_user(user)
     return Response({'token': str(refresh.access_token)},
                     status=status.HTTP_200_OK)
@@ -166,14 +169,15 @@ def sign_up(request):
     serializer.is_valid(raise_exception=True)
     username = serializer.validated_data['username']
     email = serializer.validated_data['email']
+    confirmation_code = str(uuid4())
     user, created = CustomUser.objects.get_or_create(
         username=username,
         email=email,
+        confirmation_code=confirmation_code
     )
-    confirmation_code = default_token_generator.make_token(user)
     send_mail(
-        subject='Код подтвержения доступа Yamdb',
-        message=f'Код подтвержения доступа: {confirmation_code}',
+        subject='Код подтверждения доступа Yamdb',
+        message=f'Код подтверждения доступа: {confirmation_code}',
         from_email='admin@yamdb.com',
         recipient_list=(email,))
     return Response(
