@@ -48,9 +48,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
         return title.review_title.all()
 
     def perform_update(self, serializer):
-        title = get_object_or_404(Title,
-                                  id=self.kwargs['title_id'],
-                                  review=self.kwargs['review_id'])
+        title = get_object_or_404(Title, id=self.kwargs['title_id'])
         serializer.save(author=self.request.user, title=title)
         return title.review_title.all()
 
@@ -81,8 +79,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     def perform_update(self, serializer):
         review = get_object_or_404(Review,
                                    id=self.kwargs['review_id'],
-                                   title=self.kwargs['title_id'],
-                                   comment=self.kwargs['comment_id'])
+                                   title=self.kwargs['title_id'])
         serializer.save(author=self.request.user,
                         review=review)
         return review.comment_review.all()

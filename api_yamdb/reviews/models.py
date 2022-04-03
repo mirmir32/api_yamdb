@@ -81,7 +81,7 @@ class Review(models.Model):
     """
     title = models.ForeignKey(
         Title,
-        verbose_name='Review',
+        verbose_name='Title_name',
         on_delete=models.CASCADE,
         related_name='review_title'
     )
@@ -113,6 +113,11 @@ class Review(models.Model):
 
     class Meta:
         ordering = ('id',)
+        db_table = 'rev_for_title'
+        constraints = [
+            models.UniqueConstraint(
+                fields=('author', 'title',), name='unique_rev_for_title')
+        ]
 
     def __str__(self) -> str:
         return self.text[:25]
@@ -125,7 +130,7 @@ class Comment(models.Model):
     """
     title = models.ForeignKey(
         Title,
-        verbose_name='Review',
+        verbose_name='Title_name',
         on_delete=models.CASCADE,
         related_name='changename_title',
         blank=True,
@@ -133,7 +138,7 @@ class Comment(models.Model):
     )
     review = models.ForeignKey(
         Review,
-        verbose_name='Comment',
+        verbose_name='Review_text',
         on_delete=models.CASCADE,
         related_name='comment_review',
         blank=False,
