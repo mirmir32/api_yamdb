@@ -6,8 +6,6 @@ from rest_framework.relations import SlugRelatedField
 from reviews.models import Categories, Comment, Genre, Review, Title
 from users.models import CustomUser
 
-RANK = settings.RANKS
-
 
 class CategoriesSerializer(serializers.ModelSerializer):
     class Meta:
@@ -65,6 +63,7 @@ class TitleCreateSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     author = SlugRelatedField(slug_field='username',
                               read_only=True,)
+    score = serializers.IntegerField(required=True)
 
     class Meta:
         model = Review
@@ -75,7 +74,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         Validator for checking if a field 'score' has required type of data
         for ranks - integer. The digit must be from the tuple RANK (1-10).
         """
-        if score is not int and score not in RANK:
+        if score is not int and score not in range(1, 11,):
             raise serializers.ValidationError(
                 'Type of data is not integer.'
             )
