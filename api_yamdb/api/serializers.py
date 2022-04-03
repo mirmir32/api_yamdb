@@ -71,7 +71,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Review
-        fields = ['text', 'author', 'score', 'pub_date', 'rating']
+        fields = ('text', 'author', 'score', 'pub_date', 'rating',)
 
     def get_rating(self, obj):
         return Avg(obj.score.all())
@@ -111,7 +111,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ['text', 'author', 'pub_date']
+        fields = ('text', 'author', 'pub_date',)
 
 
 class UserSerializer(serializers.ModelSerializer):

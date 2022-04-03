@@ -12,22 +12,6 @@ class IsAdminOrReadOnly(BasePermission):
         )
 
 
-# class IsAuthenticatedUserModeratorAdminCreateObject(
-#     BasePermission
-# ):
-#     """
-#     Отзыв могут создавать только Аутентифицированные пользователи:
-#     user, moderator, admin.
-#     """
-#     def has_object_permission(self, request, view, obj):
-#         if (request.method == 'OPTIONS' and
-#             request.method in SAFE_METHODS):
-#             if obj.author is (request.user.is_authenticated or
-#                               request.user.is_moderator or
-#                               request.user.is_admin):
-#                 return True
-
-
 class IsObjectOwnerModeratorAdminOrReadOnly(BasePermission):
     def has_object_permission(self, request, view, obj):
         return (

@@ -120,7 +120,7 @@ class Review(CreatedModel):
     )
 
     class Meta:
-        ordering = ['-pub_date', '-pk']
+        ordering = ('-pub_date', '-pk',)
 
     def __str__(self) -> str:
         return self.text[:25]
@@ -162,7 +162,7 @@ class Comment(CreatedModel):
     )
 
     class Meta:
-        ordering = ['-pub_date', '-pk']
+        ordering = ('-pub_date', '-pk',)
 
     def __str__(self) -> str:
         return self.text[:15]
