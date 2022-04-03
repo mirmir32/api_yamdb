@@ -64,17 +64,11 @@ class TitleCreateSerializer(serializers.ModelSerializer):
 
 class ReviewSerializer(serializers.ModelSerializer):
     author = SlugRelatedField(slug_field='username',
-                              read_only=True,
-                              allow_null=False)
-    score = serializers.IntegerField()
-    rating = serializers.SerializerMethodField()
+                              read_only=True,)
 
     class Meta:
         model = Review
-        fields = ['text', 'author', 'score', 'pub_date', 'rating']
-
-    def get_rating(self, obj):
-        return Avg(obj.score.all())
+        fields = ('id', 'text', 'author', 'score', 'pub_date',)
 
     def validate_score(self, score):
         """
@@ -93,7 +87,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         a user has already left one review on the exact title.
         """
         author = self.context['request'].user
-        title = self.context['title_id'].review_title.pk
+        title = self.context['title_id']
         review = get_object_or_404(Review, title_id=title, author=author)
         if self.context['request'].method == 'POST':
             if review.exists():
@@ -111,7 +105,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ['text', 'author', 'pub_date']
+        fields = ('id', 'text', 'author', 'pub_date',)
 
 
 class UserSerializer(serializers.ModelSerializer):

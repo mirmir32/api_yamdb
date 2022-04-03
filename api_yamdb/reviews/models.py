@@ -1,12 +1,10 @@
 import datetime as dt
 
 from django.conf import settings
-from django.core.validators import MaxValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 from .validators import validate_emptiness
-
-RANK = settings.RANKS
 
 
 class Categories(models.Model):
@@ -77,17 +75,7 @@ class Title(models.Model):
         return self.name
 
 
-class CreatedModel(models.Model):
-    """Abstract model automatically creating "pub_date"."""
-    pub_date = models.DateTimeField(
-        verbose_name='Created date',
-        auto_now_add=True)
-
-    class Meta:
-        abstract = True
-
-
-class Review(CreatedModel):
+class Review(models.Model):
     """
     Review creates reviews on exact title which are linked to the title.
     """
@@ -103,13 +91,13 @@ class Review(CreatedModel):
         on_delete=models.CASCADE,
         related_name='review_author'
     )
-    score = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        verbose_name='rank',
-        choices=RANK,
+    score = models.IntegerField(
+        verbose_name='score',
+        default=1,
         blank=False,
-        null=False
+        null=False,
+        validators=[MinValueValidator(1),
+                    MaxValueValidator(10)]
     )
     text = models.TextField(
         max_length=50000,
@@ -118,15 +106,19 @@ class Review(CreatedModel):
         validators=[validate_emptiness],
         blank=False
     )
+    pub_date = models.DateTimeField(
+        verbose_name='Created date',
+        auto_now_add=True,
+        db_index=True)
 
     class Meta:
-        ordering = ['-pub_date', '-pk']
+        ordering = ('id',)
 
     def __str__(self) -> str:
         return self.text[:25]
 
 
-class Comment(CreatedModel):
+class Comment(models.Model):
     """
     Resource comments: comments to some exact review.
     Comments are linked to the exact review.
@@ -160,9 +152,13 @@ class Comment(CreatedModel):
         validators=[validate_emptiness],
         blank=False
     )
+    pub_date = models.DateTimeField(
+        verbose_name='Created date',
+        auto_now_add=True,
+        db_index=True)
 
     class Meta:
-        ordering = ['-pub_date', '-pk']
+        ordering = ('id',)
 
     def __str__(self) -> str:
         return self.text[:15]

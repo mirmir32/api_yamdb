@@ -34,11 +34,8 @@ class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     pagination_class = PageNumberPagination
-    permission_classes = (
-        IsObjectOwnerModeratorAdminOrReadOnly,
-        IsAuthenticatedOrReadOnly
-    )
-    throttle_classes = [PostUserRateThrottle]
+    permission_classes = (IsAuthenticatedOrReadOnly, IsObjectOwnerModeratorAdminOrReadOnly)
+    throttle_classes = (PostUserRateThrottle,)
 
     def get_queryset(self):
         title = get_object_or_404(Title, id=self.kwargs['title_id'])
@@ -63,7 +60,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     pagination_class = PageNumberPagination
     permission_classes = (
         IsObjectOwnerModeratorAdminOrReadOnly,
-        IsAuthenticatedOrReadOnly
+        IsAuthenticatedOrReadOnly,
     )
 
     def get_queryset(self):
