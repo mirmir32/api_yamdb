@@ -113,10 +113,15 @@ class Review(models.Model):
 
     class Meta:
         ordering = ('id',)
-        db_table = 'rev_for_title'
+        db_table = 'review'
         constraints = [
             models.UniqueConstraint(
-                fields=('author', 'title',), name='unique_rev_for_title')
+                fields=('author', 'title',),
+                name='unique_review'),
+            models.CheckConstraint(
+                name='author_not_title_again',
+                check=~models.Q(author=models.F('title')),
+            )
         ]
 
     def __str__(self) -> str:

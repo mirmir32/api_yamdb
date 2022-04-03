@@ -80,14 +80,14 @@ class ReviewSerializer(serializers.ModelSerializer):
             )
         return score
 
-    def validate_review(self, data):
+    def validate(self, data):
         """
         Validator for blocking other attempts for reviewing if
         a user has already left one review on the exact title.
         """
+        title = self.context['request'].parser_context['kwargs']['title_id']
         author = self.context['request'].user
-        title = self.context['title_id']
-        review = get_object_or_404(Review, title_id=title, author=author)
+        review = Review.objects.filter(title_id=title, author=author)
         if self.context['request'].method == 'POST':
             if review.exists():
                 raise serializers.ValidationError(
