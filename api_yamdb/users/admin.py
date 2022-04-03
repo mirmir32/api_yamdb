@@ -15,7 +15,8 @@ class CustomUserAdmin(UserAdmin):
         'username',
         'email',
         'bio',
-        'role')
+        'role',
+        'confirmation_code')
     search_fields = ('username',)
     list_filter = ('username',)
     empty_value_display = '-пусто-'
