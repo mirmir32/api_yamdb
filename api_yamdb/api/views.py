@@ -1,40 +1,35 @@
 from uuid import uuid4
-from django.shortcuts import get_object_or_404
+
 from django.core.mail import send_mail
-
+from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework import filters, viewsets, status
+from rest_framework import filters, status, viewsets
+from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny, IsAuthenticated
-from rest_framework.decorators import api_view, permission_classes, action
+from rest_framework.permissions import (AllowAny, IsAuthenticated,
+                                        IsAuthenticatedOrReadOnly)
 from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
+from reviews.models import Categories, Genre, Review, Title
+from users.models import CustomUser
 
-from reviews.models import Review, Title, Genre, Categories
 from .filters import TitleGenreFilter
 from .mixins import CreateDestroyListViewSet
-from .permissions import (IsAdminOrReadOnly,
-                          IsObjectOwnerModeratorAdminOrReadOnly,
-                          IsAdmin)
-from .serializers import (CommentSerializer,
-                          ReviewSerializer,
-                          TitleSerializer,
-                          TitleCreateSerializer,
-                          CategoriesSerializer,
-                          GenreSerializer,
-                          UserSerializer,
-                          TokenSerializer,
-                          SignUpSerializer,
-                          AccountSerializer)
+from .permissions import (IsAdmin, IsAdminOrReadOnly,
+                          IsObjectOwnerModeratorAdminOrReadOnly)
+from .serializers import (AccountSerializer, CategoriesSerializer,
+                          CommentSerializer, GenreSerializer, ReviewSerializer,
+                          SignUpSerializer, TitleCreateSerializer,
+                          TitleSerializer, TokenSerializer, UserSerializer)
 from .throttling import PostUserRateThrottle
-from users.models import CustomUser
 
 
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     pagination_class = PageNumberPagination
-    permission_classes = (IsAuthenticatedOrReadOnly, IsObjectOwnerModeratorAdminOrReadOnly)
+    permission_classes = (IsAuthenticatedOrReadOnly,
+                          IsObjectOwnerModeratorAdminOrReadOnly)
     throttle_classes = (PostUserRateThrottle,)
 
     def get_queryset(self):

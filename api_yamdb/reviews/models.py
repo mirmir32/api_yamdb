@@ -22,7 +22,7 @@ class Categories(models.Model):
 
 class Genre(models.Model):
     name = models.CharField('Название', max_length=256)
-    slug = models.SlugField('slug',max_length=50, unique=True, db_index=True)
+    slug = models.SlugField('slug', max_length=50, unique=True, db_index=True)
 
     class Meta:
         ordering = ('name',)
@@ -81,7 +81,7 @@ class Review(models.Model):
     """
     title = models.ForeignKey(
         Title,
-        verbose_name='Title_name',
+        verbose_name='Произведение',
         on_delete=models.CASCADE,
         related_name='review_title'
     )
@@ -92,7 +92,7 @@ class Review(models.Model):
         related_name='review_author'
     )
     score = models.IntegerField(
-        verbose_name='score',
+        verbose_name='Оценка',
         default=1,
         blank=False,
         null=False,
@@ -101,13 +101,13 @@ class Review(models.Model):
     )
     text = models.TextField(
         max_length=50000,
-        verbose_name='Review text',
+        verbose_name='Отзыв',
         help_text='Add review',
         validators=[validate_emptiness],
         blank=False
     )
     pub_date = models.DateTimeField(
-        verbose_name='Created date',
+        verbose_name='Дата',
         auto_now_add=True,
         db_index=True)
 
@@ -135,7 +135,7 @@ class Comment(models.Model):
     """
     title = models.ForeignKey(
         Title,
-        verbose_name='Title_name',
+        verbose_name='Произведение',
         on_delete=models.CASCADE,
         related_name='changename_title',
         blank=True,
@@ -143,7 +143,7 @@ class Comment(models.Model):
     )
     review = models.ForeignKey(
         Review,
-        verbose_name='Review_text',
+        verbose_name='Отзыв',
         on_delete=models.CASCADE,
         related_name='comment_review',
         blank=False,
@@ -151,13 +151,13 @@ class Comment(models.Model):
     )
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        verbose_name='user',
+        verbose_name='Автор',
         on_delete=models.CASCADE,
         related_name='comment_author'
     )
     text = models.TextField(
         max_length=50000,
-        verbose_name='comments',
+        verbose_name='Комментарий',
         help_text='Add review',
         validators=[validate_emptiness],
         blank=False
