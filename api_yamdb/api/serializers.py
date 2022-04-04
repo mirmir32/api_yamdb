@@ -1,5 +1,3 @@
-from django.conf import settings
-from django.shortcuts import get_object_or_404
 from django.db.models import Avg
 from rest_framework import serializers, status
 from rest_framework.relations import SlugRelatedField
@@ -91,7 +89,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         if self.context['request'].method == 'POST':
             if review.exists():
                 raise serializers.ValidationError(
-                    detail='Вы уже оставили свой отзыв к данному произведению.',
+                    detail='Вы уже оставили свой отзыв к данному произведению',
                     code=status.HTTP_400_BAD_REQUEST
                 )
         return data

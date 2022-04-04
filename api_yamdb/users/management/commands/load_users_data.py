@@ -1,12 +1,12 @@
-from uuid import uuid4
-from csv import DictReader
-from django.core.management import BaseCommand
 import os
+from csv import DictReader
+from uuid import uuid4
 
+from django.core.management import BaseCommand
 from users.models import CustomUser
 
-
-ALREDY_LOADED_ERROR_MESSAGE = "delete the db.sqlite3 file before reload data from the CSV file"
+ALREDY_LOADED_ERROR_MESSAGE = ('delete the db.sqlite3 file before reload data'
+                               'from the CSV file')
 
 
 class Command(BaseCommand):
