@@ -15,7 +15,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Show this if the data already exist in the database
-        if CustomUser.objects.count() > 1 and not CustomUser.objects.filter(id=1).exists():
+        if (
+            CustomUser.objects.count() > 1
+            and not
+            CustomUser.objects.filter(id=1).exists()
+        ):
             print('Users data already loaded...exiting.')
             print(ALREDY_LOADED_ERROR_MESSAGE)
             return
