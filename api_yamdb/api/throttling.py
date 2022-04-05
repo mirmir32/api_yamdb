@@ -4,6 +4,7 @@ ALLOWED_REQUEST = 1
 
 
 class PostUserRateThrottle(throttling.UserRateThrottle):
+    """Контроль количества операций по созданию отзыва."""
     scope = 'post_user'
 
     def allow_request(self, request, view):
