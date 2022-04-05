@@ -1,4 +1,7 @@
 from django import forms
+import datetime as dt
+
+from django.core.exceptions import ValidationError
 
 
 def validate_emptiness(value):
@@ -10,3 +13,9 @@ def validate_emptiness(value):
             'Add review text.',
             params={'value': value}
         )
+
+def validate_year(value):
+    year = dt.datetime.now().year
+    if year < value:
+        raise ValidationError('Год выпуска произведения не может быть больше текущего!')
+    return value

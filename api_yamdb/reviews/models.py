@@ -1,15 +1,14 @@
-import datetime as dt
-
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
-from .validators import validate_emptiness
+from .validators import validate_emptiness, validate_year
 
 
 class Categories(models.Model):
+    """Категории произведений."""
     name = models.CharField('Название', max_length=256)
-    slug = models.SlugField('slug', max_length=50, unique=True, db_index=True)
+    slug = models.SlugField('slug', unique=True, db_index=True)
 
     class Meta:
         ordering = ('name',)
@@ -21,8 +20,9 @@ class Categories(models.Model):
 
 
 class Genre(models.Model):
+    """Жанры произведений."""
     name = models.CharField('Название', max_length=256)
-    slug = models.SlugField('slug', max_length=50, unique=True, db_index=True)
+    slug = models.SlugField('slug', unique=True, db_index=True)
 
     class Meta:
         ordering = ('name',)
@@ -34,15 +34,13 @@ class Genre(models.Model):
 
 
 class Title(models.Model):
+    """
+    Модель для создания произведений.
+    """
     name = models.TextField('Название', max_length=256, db_index=True)
     year = models.IntegerField(
         blank=True,
-        validators=[
-            MaxValueValidator(
-                dt.datetime.now().year,
-                message='Год выпуска не может быть позже текущего года'
-            )
-        ]
+        validators=[validate_year]
     )
     category = models.ForeignKey(
         Categories,
@@ -62,8 +60,7 @@ class Title(models.Model):
     description = models.CharField(
         'Описание',
         max_length=256,
-        null=True,
-        blank=True
+        blank=True,
     )
 
     class Meta:
@@ -98,9 +95,8 @@ class Review(models.Model):
         blank=False,
         null=False,
         validators=[MinValueValidator(
-            1,
-            message='Оценка не может быть меньше минимального значения.'),
-                    MaxValueValidator(
+            1, message='Оценка не может быть меньше минимального значения.'),
+            MaxValueValidator(
             10,
             message='Оценка не может быть больше максимального значения.')]
     )
