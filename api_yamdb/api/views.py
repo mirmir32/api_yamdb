@@ -10,7 +10,6 @@ from rest_framework.permissions import (AllowAny, IsAuthenticated,
                                         IsAuthenticatedOrReadOnly)
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-
 from reviews.models import Categories, Genre, Review, Title
 from users.models import CustomUser
 
@@ -37,17 +36,17 @@ class ReviewViewSet(viewsets.ModelViewSet):
     throttle_classes = (PostUserRateThrottle,)
 
     def get_queryset(self):
-        title = Title.objects.get(id=self.kwargs['title_id'])
+        title = get_object_or_404(Title, id=self.kwargs.get('title_id'))
         new_queryset = title.review_title.all()
         return new_queryset
 
     def perform_create(self, serializer):
-        title = Title.objects.get(id=self.kwargs['title_id'])
+        title = get_object_or_404(Title, id=self.kwargs.get('title_id'))
         serializer.save(author=self.request.user, title=title)
         return title.review_title.all()
 
     def perform_update(self, serializer):
-        title = Title.objects.get(id=self.kwargs['title_id'])
+        title = get_object_or_404(Title, id=self.kwargs.get('title_id'))
         serializer.save(author=self.request.user, title=title)
         return title.review_title.all()
 
@@ -64,21 +63,21 @@ class CommentViewSet(viewsets.ModelViewSet):
     )
 
     def get_queryset(self):
-        review = Review.objects.get(id=self.kwargs['review_id'],
-                                    title=self.kwargs['title_id'])
+        review = get_object_or_404(Review, id=self.kwargs.get('review_id'),
+                                           title=self.kwargs.get('title_id'))
         queryset = review.comment_review.all()
         return queryset
 
     def perform_create(self, serializer):
-        review = Review.objects.get(id=self.kwargs['review_id'],
-                                    title=self.kwargs['title_id'])
+        review = get_object_or_404(Review, id=self.kwargs.get('review_id'),
+                                           title=self.kwargs.get('title_id'))
         serializer.save(author=self.request.user,
                         review=review)
         return review.comment_review.all()
 
     def perform_update(self, serializer):
-        review = Review.objects.get(id=self.kwargs['review_id'],
-                                    title=self.kwargs['title_id'])
+        review = get_object_or_404(Review, id=self.kwargs.get('review_id'),
+                                           title=self.kwargs.get('title_id'))
         serializer.save(author=self.request.user,
                         review=review)
         return review.comment_review.all()
