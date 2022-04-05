@@ -36,7 +36,7 @@ class CustomUser(AbstractUser):
     @property
     def is_admin(self):
         return self.role == self.ADMIN or self.is_superuser
-    
+
     class Meta:
         ordering = ('-id',)
         verbose_name = 'Пользователь'

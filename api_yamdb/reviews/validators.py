@@ -14,8 +14,10 @@ def validate_emptiness(value):
             params={'value': value}
         )
 
+
 def validate_year(value):
     year = dt.datetime.now().year
     if year < value:
-        raise ValidationError('Год выпуска произведения не может быть больше текущего!')
+        raise ValidationError('Год выпуска произведения'
+                              'не может быть больше текущего!')
     return value
