@@ -2,6 +2,7 @@ from uuid import uuid4
 
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404
+
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, status, viewsets
 from rest_framework.decorators import action, api_view, permission_classes
@@ -84,6 +85,9 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 
 class TitleViewSet(viewsets.ModelViewSet):
+    """
+    Функция-обработчик для запросов по модели Title.
+    """
     queryset = Title.objects.all()
     permission_classes = (IsAdminOrReadOnly,)
     pagination_class = PageNumberPagination
@@ -97,6 +101,9 @@ class TitleViewSet(viewsets.ModelViewSet):
 
 
 class CategoriesViewSet(CreateDestroyListViewSet):
+    """
+    Функция-обработчик для запросов по модели Categories.
+    """
     queryset = Categories.objects.all()
     serializer_class = CategoriesSerializer
     lookup_field = 'slug'
@@ -107,6 +114,9 @@ class CategoriesViewSet(CreateDestroyListViewSet):
 
 
 class GenreViewSet(CreateDestroyListViewSet):
+    """
+    Функция-обработчик для запросов по модели Genre.
+    """
     queryset = Genre.objects.all().order_by('id')
     serializer_class = GenreSerializer
     lookup_field = 'slug'
@@ -117,6 +127,9 @@ class GenreViewSet(CreateDestroyListViewSet):
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    """
+    Функция-обработчик для запросов по модели CustomUser.
+    """
     queryset = CustomUser.objects.all().order_by('id')
     serializer_class = UserSerializer
     lookup_field = 'username'

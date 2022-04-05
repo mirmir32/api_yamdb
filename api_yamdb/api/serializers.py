@@ -2,18 +2,23 @@ from django.db.models import Avg
 
 from rest_framework import serializers, status
 from rest_framework.relations import SlugRelatedField
-
 from reviews.models import Categories, Comment, Genre, Review, Title
 from users.models import CustomUser
 
 
 class CategoriesSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для модели Categories.
+    """
     class Meta:
         fields = ('name', 'slug')
         model = Categories
 
 
 class GenreSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для модели модели Genre.
+    """
     class Meta:
         fields = ('name', 'slug')
         model = Genre
@@ -21,6 +26,9 @@ class GenreSerializer(serializers.ModelSerializer):
 
 
 class TitleSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для модели модели Title.
+    """
     genre = GenreSerializer(read_only=True, many=True)
     category = CategoriesSerializer(read_only=True)
     rating = serializers.SerializerMethodField()
@@ -45,6 +53,9 @@ class TitleSerializer(serializers.ModelSerializer):
 
 
 class TitleCreateSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для модели модели Title.
+    """
     category = serializers.SlugRelatedField(
         slug_field='slug',
         queryset=Categories.objects.all()
@@ -116,6 +127,9 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор для модели модели CustomUser.
+    """
 
     class Meta:
         model = CustomUser
@@ -124,6 +138,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class TokenSerializer(serializers.Serializer):
+    """Сериализатор для полей username и confirmation_code."""
     username = serializers.CharField(max_length=150)
     confirmation_code = serializers.CharField(max_length=254)
 
@@ -138,6 +153,7 @@ class TokenSerializer(serializers.Serializer):
 
 
 class SignUpSerializer(serializers.Serializer):
+    """Сериализатор для полей username и email."""
     username = serializers.CharField(max_length=150)
     email = serializers.EmailField()
 
