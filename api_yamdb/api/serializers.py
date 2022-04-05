@@ -1,6 +1,8 @@
 from django.db.models import Avg
+
 from rest_framework import serializers, status
 from rest_framework.relations import SlugRelatedField
+
 from reviews.models import Categories, Comment, Genre, Review, Title
 from users.models import CustomUser
 
@@ -59,6 +61,9 @@ class TitleCreateSerializer(serializers.ModelSerializer):
 
 
 class ReviewSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор/десериализатор для данных объектов модели Review.
+    """
     author = SlugRelatedField(slug_field='username',
                               read_only=True,)
     score = serializers.IntegerField(required=True)
@@ -69,19 +74,21 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     def validate_score(self, score):
         """
-        Validator for checking if a field 'score' has required type of data
-        for ranks - integer. The digit must be from the tuple RANK (1-10).
+        Валидатор для проверки поля 'score' на правильность введенных данных,
+        в котором выбирается оценка, тип которой должен быть - integer.
+        Значение оценки должно быть в установленных рамках: с 1 по 10.
         """
         if score is not int and score not in range(1, 11,):
             raise serializers.ValidationError(
-                'Type of data is not integer.'
+                'Проверьте тип данных. Тип данных не integer.'
             )
         return score
 
     def validate(self, data):
         """
-        Validator for blocking other attempts for reviewing if
-        a user has already left one review on the exact title.
+        Валидатор блокирует повторную попытку создания отзыва к конкретному
+        произведению в случае, если пользователь ранее уже оставил свой отзыв
+        к этому произведению.
         """
         title = self.context['request'].parser_context['kwargs']['title_id']
         author = self.context['request'].user
@@ -96,6 +103,9 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор/десериализатор для данных объектов модели Comment.
+    """
     author = SlugRelatedField(slug_field='username',
                               read_only=True,
                               allow_null=False)

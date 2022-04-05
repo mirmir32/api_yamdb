@@ -77,7 +77,8 @@ class Title(models.Model):
 
 class Review(models.Model):
     """
-    Review creates reviews on exact title which are linked to the title.
+    Модель для создания отзыва, который связан с конкретным произведением
+    (модель Title). Автор создает только один отзыв к конкретному произведению.
     """
     title = models.ForeignKey(
         Title,
@@ -96,11 +97,14 @@ class Review(models.Model):
         default=1,
         blank=False,
         null=False,
-        validators=[MinValueValidator(1),
-                    MaxValueValidator(10)]
+        validators=[MinValueValidator(
+            1,
+            message='Оценка не может быть меньше минимального значения.'),
+                    MaxValueValidator(
+            10,
+            message='Оценка не может быть больше максимального значения.')]
     )
     text = models.TextField(
-        max_length=50000,
         verbose_name='Отзыв',
         help_text='Add review',
         validators=[validate_emptiness],
@@ -130,8 +134,7 @@ class Review(models.Model):
 
 class Comment(models.Model):
     """
-    Resource comments: comments to some exact review.
-    Comments are linked to the exact review.
+    Модель для создания комментария к конкретному отзыву (модель Review).
     """
     title = models.ForeignKey(
         Title,
@@ -156,7 +159,6 @@ class Comment(models.Model):
         related_name='comment_author'
     )
     text = models.TextField(
-        max_length=50000,
         verbose_name='Комментарий',
         help_text='Add review',
         validators=[validate_emptiness],
