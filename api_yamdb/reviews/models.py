@@ -89,16 +89,16 @@ class Review(models.Model):
         on_delete=models.CASCADE,
         related_name='review_author'
     )
-    score = models.IntegerField(
+    score = models.PositiveSmallIntegerField(
         verbose_name='Оценка',
         default=1,
         blank=False,
         null=False,
         validators=[MinValueValidator(
-            1, message='Оценка не может быть меньше минимального значения.'),
+            1, message='Упс, ваша оценка слишком низкая.'),
             MaxValueValidator(
             10,
-            message='Оценка не может быть больше максимального значения.')]
+            message='Упс, ваша оценка слишком низкая.')]
     )
     text = models.TextField(
         verbose_name='Отзыв',

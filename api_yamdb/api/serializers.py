@@ -2,6 +2,7 @@ from django.db.models import Avg
 
 from rest_framework import serializers, status
 from rest_framework.relations import SlugRelatedField
+
 from reviews.models import Categories, Comment, Genre, Review, Title
 from users.models import CustomUser
 
