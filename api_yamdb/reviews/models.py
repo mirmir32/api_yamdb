@@ -98,7 +98,7 @@ class Review(models.Model):
             1, message='Упс, ваша оценка слишком низкая.'),
             MaxValueValidator(
             10,
-            message='Упс, ваша оценка слишком низкая.')]
+            message='Упс, ваша оценка слишком высокая.')]
     )
     text = models.TextField(
         verbose_name='Отзыв',
